@@ -1,4 +1,5 @@
 import React from 'react';
+import he from 'he';
 import ProductKeywords from './ProductKeywords.jsx';
 import {
   makeStyles,
@@ -103,9 +104,9 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
         <img className={classes.itemImage} src={image} />
       </Paper>
       <div className={classes.detailsRoot}>
-        <Typography variant="h6">{name}</Typography>
+        <Typography variant="h6">{he.decode(name)}</Typography>
         <Typography className={classes.subDetails} variant="subtitle2">Brand:
-          <Typography variant="subtitle1">{brand}</Typography>
+          <Typography variant="subtitle1">{he.decode(brand)}</Typography>
         </Typography>
         <Typography className={classes.subDetails} variant="subtitle2">Popularity:
           <Typography className={classes.faveStyle} variant="subtitle1"><Icon color="error">favorite</Icon>{popularity}</Typography>
@@ -120,7 +121,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
           <Divider flexItem orientation="vertical" />
           <Typography variant="body2">{days} days ago</Typography>
         </div>
-        <Typography variant="body2">{description}</Typography>
+        <Typography variant="body2">{he.decode(description)}</Typography>
       </div>
       <Button fullWidth variant="contained"><Icon>add_shopping_cart</Icon> Add to Cart</Button>
     </Dialog>

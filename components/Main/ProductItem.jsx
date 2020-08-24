@@ -1,4 +1,5 @@
 import React, { useState, memo } from 'react';
+import he from 'he';
 import ProductImage from './ProductImage.jsx';
 import ProductDetails from './ProductDetails.jsx';
 import {
@@ -38,7 +39,6 @@ const ProductItem = memo(({ item }) => {
   }))
 
   const classes = useStyles();
-  console.log(item);
 
   const {
     imageUrl: image,
@@ -59,7 +59,7 @@ const ProductItem = memo(({ item }) => {
             <CardMedia className={classes.cardMediaStyle} image={image} />
           </CardActionArea>
           <CardContent>
-            <Typography paragraph>{name}</Typography>
+            <Typography paragraph>{he.decode(name)}</Typography>
             <Typography variant="h6">${(+price).toFixed(2)}</Typography>
           </CardContent>
           <CardActions className={classes.cardActionsStyle}>

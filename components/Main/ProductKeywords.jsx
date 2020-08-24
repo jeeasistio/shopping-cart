@@ -1,4 +1,5 @@
 import React from 'react';
+import he from 'he';
 import {
   makeStyles,
   Button,
@@ -22,7 +23,14 @@ const ProductKeywords = ({ keywords }) => {
     <React.Fragment>
       {keywords.split(',').slice(0,3).map(keyword => {
         return (
-          <Button className={classes.keywordStyle} classes={{label: classes.keywordLabel}} size="small" variant="outlined">{keyword}</Button>
+          <Button 
+            className={classes.keywordStyle} 
+            classes={{label: classes.keywordLabel}} 
+            size="small"
+            variant="outlined"
+          >
+            {he.decode(keyword)}
+          </Button>
         )
       })}
     </React.Fragment>
