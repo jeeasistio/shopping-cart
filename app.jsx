@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-import { CssBaseline } from '@material-ui';
 import Header from '/components/Header/Header.jsx';
 import Main from '/components/Main/Main.jsx';
 import Footer from '/components/Footer/Footer.jsx';
+import { CssBaseline } from '@material-ui';
 
 import { ProductsProvider } from '/contexts/ProductsContext.jsx';
 

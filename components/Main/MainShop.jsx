@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import ProductItem from './ProductItem.jsx';
 import {
   makeStyles,
   Button,
@@ -7,7 +8,6 @@ import {
   CircularProgress,
   Typography
 } from '@material-ui';
-import ProductItem from './ProductItem.jsx';
 
 import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
@@ -50,7 +50,6 @@ const MainShop = () => {
           fullWidth
           onChange={(e) => setInputText(e.target.value)} 
           variant="outlined" 
-          type="search"
           label="Search Items..."
         />
         <Button type="submit" variant="contained">Search</Button>

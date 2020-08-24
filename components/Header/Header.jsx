@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import HeaderToolbar from './HeaderToolbar.jsx';
+import HeaderDrawer from './HeaderDrawer.jsx';
 import {
   AppBar,
   useScrollTrigger,
   Slide
 } from '@material-ui';
-import HeaderToolbar from './HeaderToolbar.jsx';
-import HeaderDrawer from './HeaderDrawer.jsx';
 
 const Header = () => {
 

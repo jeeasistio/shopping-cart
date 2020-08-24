@@ -10,11 +10,11 @@ const Main = () => {
   return (
     <section id="main">
       <Redirect from="/" to ="/home" />
-      <Route path="/home" component={MainHome} />
-      <Route path="/shop" component={MainShop} />
-      <Route path="/cart" component={MainCart} />
-      <Route path="/contact" component={MainContact} />
-      <Route path="/login" component={MainLogin} />
+      <Route path="/home" exact component={MainHome} />
+      <Route path="/shop" exact component={MainShop} />
+      <Route path="/cart" exact component={MainCart} />
+      <Route path="/contact" exact component={MainContact} />
+      <Route path="/login" exact component={MainLogin} />
     </section>
   )
 }
