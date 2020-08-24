@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext} from 'react';
 
 const ProductsContext = createContext();
 
@@ -16,13 +16,11 @@ const ProductsProvider = ({ children }) => {
     setProducts(data.results);
   }
 
-  useEffect(() => {
-    searchProducts();
-  }, [searchQuery])
-
   return (
     <ProductsContext.Provider value={{
       products,
+      searchProducts,
+      searchQuery,
       setSearchQuery,
       fetching
     }}>

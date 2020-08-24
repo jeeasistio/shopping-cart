@@ -38,6 +38,7 @@ const ProductItem = memo(({ item }) => {
   }))
 
   const classes = useStyles();
+  console.log(item);
 
   const {
     imageUrl: image,

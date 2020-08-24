@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProductItem from './ProductItem.jsx';
 import {
   makeStyles,
@@ -33,7 +33,7 @@ const MainShop = () => {
 
   const classes = useStyles();
 
-  const { products, setSearchQuery, fetching } = useContext(ProductsContext);
+  const { products, searchProducts, searchQuery, setSearchQuery, fetching } = useContext(ProductsContext);
 
   const [inputText, setInputText] = useState('');
 
@@ -41,6 +41,10 @@ const MainShop = () => {
     e.preventDefault();
     setSearchQuery(inputText);
   }
+  
+  useEffect(() => {
+    searchProducts();
+  }, [searchQuery])
 
   return (
     <section id="shop">
