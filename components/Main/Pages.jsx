@@ -6,15 +6,13 @@ import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const Pages = () => {
   
-  const { currPage, setCurrPage } = useContext(ProductsContext);
+  const { currPage, setCurrPage, totalPages } = useContext(ProductsContext);
   
   const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
       padding: 0,
-      justifyContent: 'space-evenly',
-      alignItems: 'center',
-      width: 250
+      maxWidth: 250
     },
     pageStyle: {
       margin: 5
@@ -24,7 +22,9 @@ const Pages = () => {
   const classes = useStyles()
   
   const items = [];
-  for (let number = 1; number <= 10; number++) {
+  const pageNumber = totalPages >= 10 ? 10 : totalPages
+  
+  for (let number = 1; number <= pageNumber; number++) {
     const active = currPage === number;
     items.push(
       <IconButton 

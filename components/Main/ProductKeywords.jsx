@@ -2,39 +2,39 @@ import React, { useContext } from 'react';
 import he from 'he';
 import {
   makeStyles,
-  Button,
-  Typography
+  Chip
 } from '@material-ui';
 import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const ProductKeywords = ({ keywords }) => {
   
-  const { setSearchQuery } = useContext(ProductsContext);
+  const { setSearchQuery, setInputText, setCurrPage } = useContext(ProductsContext);
 
   const useStyles = makeStyles(theme => ({
-    keywordStyle: {
-      borderRadius: 30
-    },
-    keywordLabel: {
-      fontSize: 8
+    chipStyle: {
+      fontSize: 10
     }
   }))
 
   const classes = useStyles();
+  
+  const keywordClick = (keyword) => {
+    setSearchQuery(keyword);
+    setInputText(keyword),
+    setCurrPage(1);
+  }
 
   return (
     <React.Fragment>
       {keywords.split(',').slice(0,3).map(keyword => {
         return (
-          <Button 
-            className={classes.keywordStyle} 
-            classes={{label: classes.keywordLabel}} 
-            size="small"
+          <Chip
+            className={classes.chipStyle}
             variant="outlined"
-            onClick={() => setSearchQuery(keyword)}
-          >
-            {he.decode(keyword)}
-          </Button>
+            size="small"
+            onClick={() => keywordClick(keyword)}
+            label={he.decode(keyword)}
+          />
         )
       })}
     </React.Fragment>

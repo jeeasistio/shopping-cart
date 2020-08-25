@@ -55,10 +55,10 @@ const MainShop = () => {
     setField,
     direction,
     setDirection,
-    currPage
+    currPage,
+    inputText,
+    setInputText
   } = useContext(ProductsContext);
-
-  const [inputText, setInputText] = useState('');
 
   const changeQuery = (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ const MainShop = () => {
           onChange={(e) => setInputText(e.target.value)} 
           variant="outlined" 
           label="Search Items..."
-          value={searchQuery}
+          value={inputText}
         />
         <Button type="submit" variant="contained">Search</Button>
       </form>

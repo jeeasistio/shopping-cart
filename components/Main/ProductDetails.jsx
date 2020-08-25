@@ -53,7 +53,8 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
         width: '40%',
         height: 400,
         border: 'none',
-        background: '#fff'
+        background: '#fff',
+        marginTop: 10
       }
     },
     itemImage: {

@@ -4,12 +4,14 @@ const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
 
+  const [inputText, setInputText] = useState('');
   const [searchQuery, setSearchQuery] = useState('shirt');
   const [products, setProducts] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [currPage, setCurrPage] = useState(1);
   const [field, setField] = useState('relevance');
   const [direction, setDirection] = useState('desc');
+  const [totalPages, setTotalPages] = useState(1);
   
   const searchProducts = async () => {
     setFetching(true);
@@ -18,7 +20,7 @@ const ProductsProvider = ({ children }) => {
     );
     const data = await res.json();
     setFetching(false);
-    console.log(data.pagination);
+    setTotalPages(data.pagination.totalPages);
     setProducts(data.results);
   }
 
@@ -34,7 +36,10 @@ const ProductsProvider = ({ children }) => {
       direction,
       setDirection,
       currPage,
-      setCurrPage
+      setCurrPage,
+      inputText,
+      setInputText,
+      totalPages
     }}>
       { children }
     </ProductsContext.Provider>
