@@ -83,7 +83,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
       flexDirection: 'row',
       alignItems: 'center',
       '& > span': {
-        fontSize: 18
+        fontSize: '1.1rem'
       }
     },
     priceCtn: {

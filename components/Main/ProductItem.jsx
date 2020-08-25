@@ -29,7 +29,7 @@ const ProductItem = memo(({ item }) => {
       alignItems: 'center'
     },
     popularityIconStyle: {
-      fontSize: 18,
+      fontSize: '1.1rem',
       color: '#f55',
     },
     cardActionsStyle: {
