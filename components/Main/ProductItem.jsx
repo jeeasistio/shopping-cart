@@ -46,7 +46,7 @@ const ProductItem = memo(({ item }) => {
     popularity,
     price
   } = item;
-  
+
   const [imageIsOpen, setImageIsOpen] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
 

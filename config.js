@@ -15,6 +15,7 @@ SystemJS.config({
     'react-dom': 'react-dom@16.13.1/umd/react-dom.production.min.js',
     'react-router-dom': 'https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js',
     '@material-ui': '@material-ui/core@latest/umd/material-ui.production.min.js',
+    'react-bootstrap': 'react-bootstrap@next/dist/react-bootstrap.min.js',
     'he': 'he@1.2.0/he.js'
   },
   transpiler: 'plugin-babel'
