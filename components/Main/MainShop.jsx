@@ -1,6 +1,6 @@
-import React, { useContext, useState, useLayoutEffect, memo } from 'react';
-import ProductItem from './ProductItem.jsx';
-import Pages from './Pages.jsx';
+import React, { useContext, useState, useLayoutEffect } from 'react';
+import ProductItem from './MainShop/ProductItem.jsx';
+import Pages from './MainShop/Pages.jsx';
 import {
   makeStyles,
   Button,
@@ -108,17 +108,17 @@ const MainShop = () => {
       >
         {
           fetching ? 
-            <CircularProgress />
+            <CircularProgress className={classes.shopTitle}  />
             :
             !products.length ?
-              <Typography variant="h5" color="textSecondary">No Results Found</Typography>
+              <Typography className={classes.shopTitle} variant="h5" color="textSecondary">No Results Found</Typography>
               :
               products.map(item => (
                 <ProductItem item={item} />
               ))
         }
-        {!fetching && <Pages />}
       </Grid>
+      {!fetching && <Pages />}
     </section>
   )
 }

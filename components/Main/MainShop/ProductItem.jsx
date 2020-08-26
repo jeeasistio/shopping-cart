@@ -55,7 +55,7 @@ const ProductItem = memo(({ item }) => {
   
   useEffect(() => {
     setIsOnCart(cart.some(CI => CI.id === item.id));
-  }, [cart])
+  }, [cart, item])
   
   const [imageIsOpen, setImageIsOpen] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);

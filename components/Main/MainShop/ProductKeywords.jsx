@@ -12,7 +12,8 @@ const ProductKeywords = ({ keywords }) => {
 
   const useStyles = makeStyles(theme => ({
     chipStyle: {
-      fontSize: '0.6rem'
+      fontSize: '0.6rem',
+      maxWidth: 70
     }
   }))
 

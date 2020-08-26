@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import he from 'he';
 import ProductKeywords from './ProductKeywords.jsx';
 import {
@@ -14,7 +14,7 @@ import {
   Toolbar
 } from '@material-ui';
 
-const ProductDetails = memo(({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart }) => {
+const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart }) => {
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -146,7 +146,7 @@ const ProductDetails = memo(({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, i
         <Typography variant="body2">{description && he.decode(description)}</Typography>
       </div>
       <Button 
-        onClick={() => addToCart(item)}
+        onClick={cartBtn}
         fullWidth variant="contained"
       >
         <Icon>add_shopping_cart</Icon> Add to Cart
@@ -160,6 +160,6 @@ const ProductDetails = memo(({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, i
       </Button>
     </Dialog>
   )
-})
+}
 
 export default ProductDetails;

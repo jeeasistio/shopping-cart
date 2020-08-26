@@ -12,7 +12,8 @@ const Pages = () => {
     root: {
       display: 'flex',
       padding: 0,
-      maxWidth: 250
+      maxWidth: 250,
+      margin: '10px auto 20px auto'
     },
     pageStyle: {
       margin: 5
