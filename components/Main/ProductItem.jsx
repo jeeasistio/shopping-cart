@@ -1,7 +1,8 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useContext, useEffect, memo } from 'react';
 import he from 'he';
 import ProductImage from './ProductImage.jsx';
 import ProductDetails from './ProductDetails.jsx';
+import { CartContext } from '/contexts/CartContext.jsx';
 import {
   makeStyles,
   Grid,
@@ -18,6 +19,10 @@ import {
 } from '@material-ui';
 
 const ProductItem = memo(({ item }) => {
+
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  
+  const [isOnCart, setIsOnCart] = useState(false);
 
   const useStyles = makeStyles(theme => ({
     cardMediaStyle: {
@@ -44,11 +49,20 @@ const ProductItem = memo(({ item }) => {
     imageUrl: image,
     name,
     popularity,
-    price
+    price,
+    id
   } = item;
-
+  
+  useEffect(() => {
+    setIsOnCart(cart.some(CI => CI.id === item.id));
+  }, [cart])
+  
   const [imageIsOpen, setImageIsOpen] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  
+  const cartBtn = () => {
+    !isOnCart ? addToCart(item) : removeFromCart(item);
+  }
 
   return (
     <React.Fragment>
@@ -65,8 +79,8 @@ const ProductItem = memo(({ item }) => {
           <CardActions className={classes.cardActionsStyle}>
             <Button onClick={() => setDetailsIsOpen(true)} >View Details</Button>
             <Typography className={classes.popularityStyle}><Icon className={classes.popularityIconStyle}>favorite</Icon>{popularity}</Typography>
-            <IconButton>
-              <Icon>add_shopping_cart</Icon>
+            <IconButton onClick={cartBtn}>
+              <Icon>{!isOnCart ? 'add_shopping_cart' : 'remove_shopping_cart'}</Icon>
             </IconButton>
           </CardActions>
         </Card>
@@ -77,10 +91,12 @@ const ProductItem = memo(({ item }) => {
       imageIsOpen={imageIsOpen} 
       setImageIsOpen={setImageIsOpen} 
     />
-    <ProductDetails 
+    <ProductDetails
       item={item}
       detailsIsOpen={detailsIsOpen}
       setDetailsIsOpen={setDetailsIsOpen}
+      cartBtn={cartBtn}
+      isOnCart={isOnCart}
     />
     </React.Fragment>
   )

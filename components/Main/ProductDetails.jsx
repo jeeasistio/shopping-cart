@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import he from 'he';
 import ProductKeywords from './ProductKeywords.jsx';
 import {
@@ -14,8 +14,8 @@ import {
   Toolbar
 } from '@material-ui';
 
-const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
-  
+const ProductDetails = memo(({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart }) => {
+
   const useStyles = makeStyles(theme => ({
     root: {
       display: 'flex',
@@ -96,7 +96,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
       marginTop: 0
     }
   }))
-  
+
   const classes = useStyles();
 
   const {
@@ -145,10 +145,21 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen }) => {
         </div>
         <Typography variant="body2">{description && he.decode(description)}</Typography>
       </div>
-      <Button fullWidth variant="contained"><Icon>add_shopping_cart</Icon> Add to Cart</Button>
-      <Button className={classes.purchaseBtn} fullWidth variant="contained"><Icon>attach_money</Icon> Purchase</Button>
+      <Button 
+        onClick={() => addToCart(item)}
+        fullWidth variant="contained"
+      >
+        <Icon>add_shopping_cart</Icon> Add to Cart
+      </Button>
+      <Button 
+        className={classes.purchaseBtn} 
+        fullWidth 
+        variant="contained"
+      >
+       <Icon>attach_money</Icon> Purchase
+      </Button>
     </Dialog>
   )
-}
+})
 
 export default ProductDetails;

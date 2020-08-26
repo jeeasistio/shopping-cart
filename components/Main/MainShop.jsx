@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, memo } from 'react';
 import ProductItem from './ProductItem.jsx';
 import Pages from './Pages.jsx';
 import {
@@ -15,13 +15,32 @@ import {
 import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const MainShop = () => {
+  
+  const {
+    products,
+    searchProducts,
+    searchQuery,
+    setSearchQuery,
+    fetching,
+    field,
+    setField,
+    direction,
+    setDirection,
+    currPage,
+    inputText,
+    setInputText
+  } = useContext(ProductsContext);
 
   const useStyles = makeStyles(theme => ({
+    shopTitle: {
+      margin: '10px auto',
+      textAlign: 'center'
+    },
     searchStyle: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      margin: '20px auto',
+      margin: '10px auto',
       width: '75%',
       '& > *': {
         margin: '0px 8px'
@@ -45,32 +64,18 @@ const MainShop = () => {
 
   const classes = useStyles();
 
-  const {
-    products,
-    searchProducts,
-    searchQuery,
-    setSearchQuery,
-    fetching,
-    field,
-    setField,
-    direction,
-    setDirection,
-    currPage,
-    inputText,
-    setInputText
-  } = useContext(ProductsContext);
-
   const changeQuery = (e) => {
     e.preventDefault();
     setSearchQuery(inputText);
   }
-
+  
   useEffect(() => {
     searchProducts();
   }, [searchQuery, field, direction, currPage])
 
   return (
     <section id="shop">
+      <Typography className={classes.shopTitle} variant="h5">Shop</Typography>
       <form className={classes.searchStyle} onSubmit={changeQuery}>
         <TextField
           size="small" 

@@ -7,6 +7,7 @@ import Footer from '/components/Footer/Footer.jsx';
 import { CssBaseline } from '@material-ui';
 
 import { ProductsProvider } from '/contexts/ProductsContext.jsx';
+import { CartProvider } from '/contexts/CartContext.jsx';
 
 const App = () => {
   return (
@@ -15,9 +16,11 @@ const App = () => {
         <Switch>
           <CssBaseline>
             <ProductsProvider>
-              <Header />
-              <Main />
-              <Footer />
+              <CartProvider>
+                <Header />
+                <Main />
+                <Footer />
+              </CartProvider>
             </ProductsProvider>
           </CssBaseline>
         </Switch>

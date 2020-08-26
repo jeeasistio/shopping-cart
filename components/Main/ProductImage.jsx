@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles, Backdrop } from '@material-ui';
 
-const ProductImage = ({ image, imageIsOpen, setImageIsOpen }) => {
+const ProductImage = memo(({ image, imageIsOpen, setImageIsOpen }) => {
   
   const useStyles = makeStyles(theme => ({
     backdropStyle: {
@@ -28,6 +28,6 @@ const ProductImage = ({ image, imageIsOpen, setImageIsOpen }) => {
       <img className={classes.backdropImage} src={image} />
     </Backdrop>
   )
-}
+})
 
 export default ProductImage;
