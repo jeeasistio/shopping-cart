@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, memo } from 'react';
+import React, { useContext, useState, useLayoutEffect, memo } from 'react';
 import ProductItem from './ProductItem.jsx';
 import Pages from './Pages.jsx';
 import {
@@ -69,7 +69,7 @@ const MainShop = () => {
     setSearchQuery(inputText);
   }
   
-  useEffect(() => {
+  useLayoutEffect(() => {
     searchProducts();
   }, [searchQuery, field, direction, currPage])
 
