@@ -1,28 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   makeStyles,
   TableRow,
   TableCell,
-  IconButton,
+  Button,
   Icon
 } from '@material-ui';
 
 const CartItems = ({ item, removeFromCart }) => {
   
-  const {name, price} = item
+  const useStyles = makeStyles(theme => ({
+    quantityCtn: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column-reverse',
+      [theme.breakpoints.up('sm')]: {
+        flexDirection: 'row'
+      }
+    },
+    quantityBtn: {
+      minWidth: 20,
+      maxWidth: 20,
+      minHeight: 20,
+      maxHeight: 20,
+      margin: 5
+    },
+    quantityIcon: {
+      fontSize: '0.8rem'
+    }
+  }))
+  
+  const classes = useStyles();
+  
+  const {name, price, on_sale, sale_price} = item
   
   const [quantity, setQuantity] = useState(1);
+  const [isSale, setIsSale] = useState(false);
   
-  const sum = quantity * +price;
+  useEffect(() => {
+    setIsSale(
+      on_sale === 'Yes'
+    )
+  }, [item]);
+  
+  const unitPrice = isSale ? +sale_price : +price;
+  const sum = quantity * unitPrice;
   
   const addQuantity = () => {
     setQuantity(quantity + 1);
   }
   
   const reduceQuantity = () => {
-    if (quantity < 2) {
-      removeFromCart(item);
-    }
+    if (quantity < 2) return;
     setQuantity(quantity - 1);
   }
 
@@ -30,11 +60,27 @@ const CartItems = ({ item, removeFromCart }) => {
     <TableRow key={name}>
       <TableCell>{name}</TableCell>
       <TableCell align="center">
-        <IconButton onClick={reduceQuantity}><Icon>{quantity < 2 ? 'close' : 'remove'}</Icon></IconButton>
-          {quantity}
-        <IconButton onClick={addQuantity}><Icon>add</Icon></IconButton>
+        <div className={classes.quantityCtn}>
+          <Button 
+            className={classes.quantityBtn}
+            variant="contained"
+            size="small"
+            onClick={quantity < 2 ? () => removeFromCart(item) : reduceQuantity}
+          >
+            <Icon className={classes.quantityIcon}>{quantity < 2 ? 'close' : 'remove'}</Icon>
+          </Button>
+            {quantity}
+          <Button
+            className={classes.quantityBtn}
+            variant="contained"
+            size="small"
+            onClick={addQuantity}
+          >
+            <Icon className={classes.quantityIcon}>add</Icon>
+          </Button>
+        </div>
       </TableCell>
-      <TableCell align="center">${(+price).toFixed(2)}</TableCell> 
+      <TableCell align="center">${(unitPrice).toFixed(2)}</TableCell> 
       <TableCell align="center">${(sum).toFixed(2)}</TableCell>
     </TableRow>
   )

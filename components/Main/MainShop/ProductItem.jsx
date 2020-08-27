@@ -29,6 +29,14 @@ const ProductItem = memo(({ item }) => {
       width: '100%',
       height: 200
     },
+    priceCtn: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    origPrice: {
+      textDecoration: 'line-through',
+      marginRight: 5
+    },
     popularityStyle: {
       display: 'flex',
       alignItems: 'center'
@@ -50,15 +58,19 @@ const ProductItem = memo(({ item }) => {
     name,
     popularity,
     price,
+    sale_price,
+    on_sale,
     id
   } = item;
   
-  useEffect(() => {
-    setIsOnCart(cart.some(CI => CI.id === item.id));
-  }, [cart, item])
-  
   const [imageIsOpen, setImageIsOpen] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  const [isSale, setIsSale] = useState(false);
+  
+  useEffect(() => {
+    setIsOnCart(cart.some(CI => CI.id === item.id));
+    setIsSale(on_sale === 'Yes');
+  }, [cart, item])
   
   const cartBtn = () => {
     !isOnCart ? addToCart(item) : removeFromCart(item);
@@ -66,7 +78,7 @@ const ProductItem = memo(({ item }) => {
 
   return (
     <React.Fragment>
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} md={4}>
       <Zoom in={true}>
         <Card>
           <CardActionArea onClick={() => setImageIsOpen(true)}>
@@ -74,7 +86,10 @@ const ProductItem = memo(({ item }) => {
           </CardActionArea>
           <CardContent>
             <Typography paragraph>{he.decode(name)}</Typography>
-            <Typography variant="h6">${(+price).toFixed(2)}</Typography>
+            <Typography className={classes.priceCtn} variant="h6">
+              {isSale && <Typography color="textSecondary" className={classes.origPrice}>${(+price).toFixed(2)}</Typography>}
+              {isSale ? `$${(+sale_price).toFixed(2)}` : `$${(+price).toFixed(2)}`}
+            </Typography>
           </CardContent>
           <CardActions className={classes.cardActionsStyle}>
             <Button onClick={() => setDetailsIsOpen(true)} >View Details</Button>
@@ -97,6 +112,7 @@ const ProductItem = memo(({ item }) => {
       setDetailsIsOpen={setDetailsIsOpen}
       cartBtn={cartBtn}
       isOnCart={isOnCart}
+      isSale={isSale}
     />
     </React.Fragment>
   )

@@ -14,7 +14,7 @@ import {
   Toolbar
 } from '@material-ui';
 
-const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart }) => {
+const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart, isSale }) => {
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -109,9 +109,8 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
     description,
     id,
     keywords,
-    on_sale: sale,
-    quantity_available: available,
-    sale_price: salePrice
+    sale_price,
+    quantity_available: available
   } = item;
 
   return (
@@ -137,7 +136,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
           {keywords && <ProductKeywords keywords={keywords} />}
         </Typography>
         <div className={classes.priceCtn}>
-          <Typography variant="h6">${(+price).toFixed(2)}</Typography>
+          <Typography variant="h6">{isSale ? `$${(+sale_price).toFixed(2)}` : `$${(+price).toFixed(2)}`}</Typography>
           <Divider flexItem orientation="vertical" />
           <Typography variant="body2">{available} available</Typography>
           <Divider flexItem orientation="vertical" />
