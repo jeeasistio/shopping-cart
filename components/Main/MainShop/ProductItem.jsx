@@ -52,7 +52,11 @@ const ProductItem = memo(({ item }) => {
   }))
 
   const classes = useStyles();
-
+  
+  const [imageIsOpen, setImageIsOpen] = useState(false);
+  const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  const [isSale, setIsSale] = useState(false);
+  
   const {
     imageUrl: image,
     name,
@@ -63,18 +67,14 @@ const ProductItem = memo(({ item }) => {
     id
   } = item;
   
-  const [imageIsOpen, setImageIsOpen] = useState(false);
-  const [detailsIsOpen, setDetailsIsOpen] = useState(false);
-  const [isSale, setIsSale] = useState(false);
+  const cartBtn = () => {
+    !isOnCart ? addToCart(item) : removeFromCart(item);
+  }
   
   useEffect(() => {
     setIsOnCart(cart.some(CI => CI.id === item.id));
     setIsSale(on_sale === 'Yes');
   }, [cart, item])
-  
-  const cartBtn = () => {
-    !isOnCart ? addToCart(item) : removeFromCart(item);
-  }
 
   return (
     <React.Fragment>

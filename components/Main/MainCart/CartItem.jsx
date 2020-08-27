@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import {
   makeStyles,
   TableRow,
@@ -7,8 +7,8 @@ import {
   Icon
 } from '@material-ui';
 
-const CartItems = ({ item, removeFromCart }) => {
-  
+const CartItems = memo(({ item, removeFromCart }) => {
+
   const useStyles = makeStyles(theme => ({
     quantityCtn: {
       display: 'flex',
@@ -30,31 +30,30 @@ const CartItems = ({ item, removeFromCart }) => {
       fontSize: '0.8rem'
     }
   }))
-  
+
   const classes = useStyles();
-  
-  const {name, price, on_sale, sale_price} = item
-  
+
+  const { name, price, on_sale, sale_price } = item;
+
   const [quantity, setQuantity] = useState(1);
   const [isSale, setIsSale] = useState(false);
-  
-  useEffect(() => {
-    setIsSale(
-      on_sale === 'Yes'
-    )
-  }, [item]);
-  
+
   const unitPrice = isSale ? +sale_price : +price;
   const sum = quantity * unitPrice;
-  
+
   const addQuantity = () => {
     setQuantity(quantity + 1);
   }
-  
+
   const reduceQuantity = () => {
-    if (quantity < 2) return;
     setQuantity(quantity - 1);
   }
+
+  useEffect(() => {
+    setIsSale(
+      on_sale === 'Yes'
+    );
+  }, [item]);
 
   return (
     <TableRow key={name}>
@@ -84,6 +83,6 @@ const CartItems = ({ item, removeFromCart }) => {
       <TableCell align="center">${(sum).toFixed(2)}</TableCell>
     </TableRow>
   )
-}
+})
 
 export default CartItems;

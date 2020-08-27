@@ -30,7 +30,7 @@ const Pages = () => {
   const classes = useStyles()
 
   const items = [];
-  const pageNumber = totalPages >= 10 ? 10 : totalPages
+  const pageNumber = totalPages >= 10 ? 10 : totalPages;
 
   for (let number = 1; number <= pageNumber; number++) {
     const active = currPage === number;

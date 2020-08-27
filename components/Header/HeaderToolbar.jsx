@@ -27,7 +27,7 @@ const HeaderToolbar = ({ toggleDrawer }) => {
 
   return (
     <Toolbar className={classes.navStyle} component="nav">
-      <Typography>E-Commerce Site</Typography>
+      <Typography>Shopy</Typography>
       <IconButton className={classes.menuStyle} onClick={toggleDrawer}><Icon>menu</Icon></IconButton>
     </Toolbar>
   )
