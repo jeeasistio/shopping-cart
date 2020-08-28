@@ -19,19 +19,19 @@ const ProductPurchase = ({ isOnCart, cartBtn }) => {
   return (
     <div className={classes.buttonsCtn}>
       <Button 
+        onClick={cartBtn}
+        fullWidth variant="contained"
+        startIcon={<Icon>{isOnCart ? 'remove_shopping_cart' : 'add_shopping_cart'}</Icon>}
+      >
+        {isOnCart ? 'Remove from cart' : 'Add to cart'}
+      </Button>
+      <Button 
         className={classes.purchaseBtn} 
         fullWidth 
         variant="contained"
         startIcon={<Icon>attach_money</Icon>}
       >
         Purchase
-      </Button>
-     <Button 
-        onClick={cartBtn}
-        fullWidth variant="contained"
-        startIcon={<Icon>{isOnCart ? 'remove_shopping_cart' : 'add_shopping_cart'}</Icon>}
-      >
-        {isOnCart ? 'Remove from cart' : 'Add to cart'}
       </Button>
     </div>
   )

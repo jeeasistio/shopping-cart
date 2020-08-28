@@ -1,15 +1,26 @@
 import React, { useState, useEffect, memo } from 'react';
+import CartImage from './CartImage.jsx';
 import {
   makeStyles,
   TableRow,
   TableCell,
   Button,
-  Icon
+  Icon,
+  Collapse,
+  Box,
+  Typography
 } from '@material-ui';
 
 const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice }) => {
 
   const useStyles = makeStyles(theme => ({
+    nameStyle: {
+      maxWidth: 90,
+      padding: 5,
+      [theme.breakpoints.up('xs')]: {
+        maxWidth: 'none'
+      }
+    },
     quantityCtn: {
       display: 'flex',
       alignItems: 'center',
@@ -28,20 +39,51 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
     },
     quantityIcon: {
       fontSize: '0.8rem'
+    },
+    collapseCtn: {
+      paddingTop: 0,
+      paddingBottom: 0,
+      background: '#f4f4f4'
+    },
+    detailsCtn: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: 10
+    },
+    detailsImg: {
+      maxWidth: 100,
+      maxHeight: 100,
+      borderRadius: 5
+    },
+    imgButton: {
+      padding: 0
     }
   }))
 
   const classes = useStyles();
 
-  const { name, price, on_sale, sale_price } = item;
+  const {
+    brand,
+    imageUrl: image,
+    name,
+    on_sale,
+    price,
+    quantity_available: available,
+    sale_price,
+    thumbnailImageUrl: thumbnail
+  } = item;
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState({1});
   const [isSale, setIsSale] = useState(false);
+  const [detailsIsOpen, setDetailsIsOpen] = useState(false);
+  const [imageIsOpen, setImageIsOpen] = useState(false);
 
   const unitPrice = isSale ? +sale_price : +price;
   const sum = quantity * unitPrice;
 
   const addQuantity = () => {
+    if (quantity >= available) return;
     setQuantity(quantity + 1);
     setTotalCartPrice(totalCartPrice + unitPrice);
   }
@@ -63,32 +105,60 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
   }, [cart])
 
   return (
-    <TableRow key={name}>
-      <TableCell>{name}</TableCell>
-      <TableCell align="center">
-        <div className={classes.quantityCtn}>
-          <Button 
-            className={classes.quantityBtn}
-            variant="contained"
-            size="small"
-            onClick={quantity < 2 ? () => removeFromCart(item) : reduceQuantity}
-          >
-            <Icon className={classes.quantityIcon}>{quantity < 2 ? 'close' : 'remove'}</Icon>
-          </Button>
-            {quantity}
-          <Button
-            className={classes.quantityBtn}
-            variant="contained"
-            size="small"
-            onClick={addQuantity}
-          >
-            <Icon className={classes.quantityIcon}>add</Icon>
-          </Button>
-        </div>
-      </TableCell>
-      <TableCell align="center">${unitPrice.toFixed(2)}</TableCell> 
-      <TableCell align="center">${sum.toFixed(2)}</TableCell>
-    </TableRow>
+    <React.Fragment>
+      <TableRow key={name}>
+        <TableCell className={classes.nameStyle}><Button onClick={() => setDetailsIsOpen(!detailsIsOpen)}>{name}</Button></TableCell>
+        <TableCell align="center">
+          <div className={classes.quantityCtn}>
+            <Button 
+              className={classes.quantityBtn}
+              variant="contained"
+              size="small"
+              onClick={quantity < 2 ? () => removeFromCart(item) : reduceQuantity}
+            >
+              <Icon className={classes.quantityIcon}>{quantity < 2 ? 'close' : 'remove'}</Icon>
+            </Button>
+              {quantity}
+            <Button
+              className={classes.quantityBtn}
+              variant="contained"
+              size="small"
+              onClick={addQuantity}
+            >
+              <Icon className={classes.quantityIcon}>add</Icon>
+            </Button>
+          </div>
+        </TableCell>
+        <TableCell align="center">${unitPrice.toFixed(2)}</TableCell> 
+        <TableCell align="center">${sum.toFixed(2)}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell className={classes.collapseCtn} colSpan="4">
+          <Collapse in={detailsIsOpen} timeout="auto" unmountOnExit>
+            <Box className={classes.detailsCtn} margin="1">
+              <Button classes={{root: classes.imgButton}} onClick={() => setImageIsOpen(true)}>
+                <img className={classes.detailsImg} src={thumbnail} />
+              </Button>
+              <div>
+                <Typography variant="subtitle2">Brand:</Typography>
+                <br />
+                <Typography>{brand}</Typography>
+              </div>
+              <div>
+                <Typography variant="subtitle2">Available:</Typography>
+                <br />
+                <Typography>{available}</Typography>
+              </div>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+      <CartImage
+        image={image}
+        imageIsOpen={imageIsOpen}
+        setImageIsOpen={setImageIsOpen}
+      />
+    </React.Fragment>
   )
 })
 

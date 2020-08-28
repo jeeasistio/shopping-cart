@@ -10,8 +10,7 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  TablePagination
+  TableRow
 } from '@material-ui';
 
 import { CartContext } from '/contexts/CartContext.jsx';
@@ -42,18 +41,6 @@ const MainCart = () => {
 
   const classes = useStyles();
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   return (
     <section id="cart">
       <Typography className={classes.cartTitle} variant="h5">Cart</Typography>
@@ -68,9 +55,7 @@ const MainCart = () => {
             </TableRow> 
           </TableHead> 
           <TableBody> 
-            {cart
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(item => (
+            {cart.map(item => (
               <CartItem 
                 cart={cart}
                 item={item}
@@ -78,20 +63,10 @@ const MainCart = () => {
                 totalCartPrice={totalCartPrice}
                 setTotalCartPrice={setTotalCartPrice}
               />
-            ) )}
+            ))}
             <CartTotal totalCartPrice={totalCartPrice} />
           </TableBody>
         </Table>
-        <TablePagination 
-          classes={{toolbar: classes.toolbarStyle, spacer: classes.spacerStyle}}
-          rowsPerPageOptions={[5, 10, 15, 20]}
-          component="div"
-          count={cart.length} 
-          rowsPerPage={rowsPerPage} 
-          page={page}
-          onChangePage={handleChangePage} 
-          onChangeRowsPerPage={handleChangeRowsPerPage} 
-        />
       </TableContainer>
       <CartPurchase cart={cart} clearCart={clearCart} />
     </section>

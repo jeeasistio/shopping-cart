@@ -19,17 +19,17 @@ const CartPurchase = ({ cart, clearCart }) => {
       <Button 
         fullWidth 
         variant="contained"
-        startIcon={<Icon>attach_money</Icon>}
-      >
-        Purchase
-      </Button>
-      <Button 
-        fullWidth 
-        variant="contained"
         startIcon={<Icon>close</Icon>}
         onClick={clearCart}
       >
         Clear Cart
+      </Button>
+      <Button 
+        fullWidth 
+        variant="contained"
+        startIcon={<Icon>attach_money</Icon>}
+      >
+        Purchase
       </Button>
     </div>
   )
