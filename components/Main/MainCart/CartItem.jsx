@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartImage from './CartImage.jsx';
 import {
   makeStyles,
@@ -11,7 +11,7 @@ import {
   Typography
 } from '@material-ui';
 
-const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice }) => {
+const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice }) => {
 
   const useStyles = makeStyles(theme => ({
     nameStyle: {
@@ -83,7 +83,6 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
   const sum = quantity * unitPrice;
 
   const addQuantity = () => {
-    if (quantity >= available) return;
     setQuantity(quantity + 1);
     setTotalCartPrice(totalCartPrice + unitPrice);
   }
@@ -97,6 +96,7 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
     setIsSale(
       on_sale === 'Yes'
     );
+    setQuantity(1);
     setTotalCartPrice(
       cart
       .map(({ on_sale, sale_price, price }) => on_sale === 'Yes' ? +sale_price : +price)
@@ -121,6 +121,7 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
               {quantity}
             <Button
               className={classes.quantityBtn}
+              disabled={quantity >= available}
               variant="contained"
               size="small"
               onClick={addQuantity}
@@ -160,6 +161,6 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
       />
     </React.Fragment>
   )
-})
+}
 
 export default CartItems;

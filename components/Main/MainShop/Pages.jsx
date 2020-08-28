@@ -23,7 +23,10 @@ const Pages = () => {
       margin: '10px auto 20px auto'
     },
     pageStyle: {
-      margin: 5
+      margin: 4
+    },
+    arrowIcon: {
+      fontSize: '1rem'
     }
   }))
 
@@ -41,7 +44,7 @@ const Pages = () => {
         onClick={() => setCurrPage(number)}
       >
         <Typography 
-          variant={active ? "h5" : "body1"}
+          variant={active ? "h6" : "body1"}
           color={active ? "primary" : "textSecondary"}
         >
           {number}
@@ -65,9 +68,8 @@ const Pages = () => {
         onClick={prevPage} 
         color="primary" 
         size="small"
-        className={classes.arrowIcon}
       >
-        <Icon>arrow_back_ios</Icon>
+        <Icon className={classes.arrowIcon}>arrow_back_ios</Icon>
       </IconButton>
       {items}
       <IconButton 
@@ -75,9 +77,8 @@ const Pages = () => {
         onClick={nextPage}
         color="primary"
         size="small"
-        className={classes.arrowIcon}
       >
-        <Icon>arrow_forward_ios</Icon>
+        <Icon className={classes.arrowIcon}>arrow_forward_ios</Icon>
       </IconButton>
     </Pagination>
   )
