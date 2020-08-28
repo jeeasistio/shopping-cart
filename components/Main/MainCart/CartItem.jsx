@@ -74,7 +74,7 @@ const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCa
     thumbnailImageUrl: thumbnail
   } = item;
 
-  const [quantity, setQuantity] = useState({1});
+  const [quantity, setQuantity] = useState(1);
   const [isSale, setIsSale] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
   const [imageIsOpen, setImageIsOpen] = useState(false);
