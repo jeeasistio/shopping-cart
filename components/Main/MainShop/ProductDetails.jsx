@@ -1,6 +1,7 @@
 import React from 'react';
 import he from 'he';
 import ProductKeywords from './ProductKeywords.jsx';
+import ProductPurchase from './ProductPurchase.jsx';
 import {
   makeStyles,
   Dialog,
@@ -91,9 +92,6 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignItems: 'center'
-    },
-    purchaseBtn: {
-      marginTop: 0
     }
   }))
 
@@ -144,19 +142,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
         </div>
         <Typography variant="body2">{description && he.decode(description)}</Typography>
       </div>
-      <Button 
-        onClick={cartBtn}
-        fullWidth variant="contained"
-      >
-        <Icon>add_shopping_cart</Icon> Add to Cart
-      </Button>
-      <Button 
-        className={classes.purchaseBtn} 
-        fullWidth 
-        variant="contained"
-      >
-       <Icon>attach_money</Icon> Purchase
-      </Button>
+      <ProductPurchase cartBtn={cartBtn} isOnCart={isOnCart} />
     </Dialog>
   )
 }

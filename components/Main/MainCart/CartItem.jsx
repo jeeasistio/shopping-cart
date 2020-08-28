@@ -7,7 +7,7 @@ import {
   Icon
 } from '@material-ui';
 
-const CartItems = memo(({ item, removeFromCart }) => {
+const CartItems = memo(({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice }) => {
 
   const useStyles = makeStyles(theme => ({
     quantityCtn: {
@@ -43,17 +43,24 @@ const CartItems = memo(({ item, removeFromCart }) => {
 
   const addQuantity = () => {
     setQuantity(quantity + 1);
+    setTotalCartPrice(totalCartPrice + unitPrice);
   }
 
   const reduceQuantity = () => {
     setQuantity(quantity - 1);
+    setTotalCartPrice(totalCartPrice - unitPrice);
   }
 
   useEffect(() => {
     setIsSale(
       on_sale === 'Yes'
     );
-  }, [item]);
+    setTotalCartPrice(
+      cart
+      .map(({ on_sale, sale_price, price }) => on_sale === 'Yes' ? +sale_price : +price)
+      .reduce((a, b) => a + b, 0)
+    );
+  }, [cart])
 
   return (
     <TableRow key={name}>
@@ -79,8 +86,8 @@ const CartItems = memo(({ item, removeFromCart }) => {
           </Button>
         </div>
       </TableCell>
-      <TableCell align="center">${(unitPrice).toFixed(2)}</TableCell> 
-      <TableCell align="center">${(sum).toFixed(2)}</TableCell>
+      <TableCell align="center">${unitPrice.toFixed(2)}</TableCell> 
+      <TableCell align="center">${sum.toFixed(2)}</TableCell>
     </TableRow>
   )
 })

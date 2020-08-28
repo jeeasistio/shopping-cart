@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import CartItem from './MainCart/CartItem.jsx';
+import CartTotal from './MainCart/CartTotal.jsx';
+import CartPurchase from './MainCart/CartPurchase.jsx';
 import {
   makeStyles,
   Typography,
@@ -16,7 +18,7 @@ import { CartContext } from '/contexts/CartContext.jsx';
 
 const MainCart = () => {
 
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart } = useContext(CartContext);
 
   const useStyles = makeStyles(theme => ({
     cartTitle: {
@@ -42,10 +44,6 @@ const MainCart = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  
-  const totalCartPrice = (500).toFixed(2);
-  const balance = (500).toFixed(2);
-  const balanceAfterPurchase = (balance - totalCartPrice).toFixed(2);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -74,28 +72,19 @@ const MainCart = () => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(item => (
               <CartItem 
+                cart={cart}
                 item={item}
                 removeFromCart={removeFromCart}
+                totalCartPrice={totalCartPrice}
+                setTotalCartPrice={setTotalCartPrice}
               />
             ) )}
-            <TableRow>
-              <TableCell rowSpan="3" />
-              <TableCell colSpan="2">Total Price</TableCell>
-              <TableCell align="center">${totalCartPrice}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell colSpan="2">Balance</TableCell>
-              <TableCell align="center">${balance}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell colSpan="2">Balance after purchase</TableCell>
-              <TableCell align="center">${balanceAfterPurchase}</TableCell>
-            </TableRow>
+            <CartTotal totalCartPrice={totalCartPrice} />
           </TableBody>
         </Table>
         <TablePagination 
           classes={{toolbar: classes.toolbarStyle, spacer: classes.spacerStyle}}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 15, 20]}
           component="div"
           count={cart.length} 
           rowsPerPage={rowsPerPage} 
@@ -104,6 +93,7 @@ const MainCart = () => {
           onChangeRowsPerPage={handleChangeRowsPerPage} 
         />
       </TableContainer>
+      <CartPurchase cart={cart} clearCart={clearCart} />
     </section>
   )
 }
