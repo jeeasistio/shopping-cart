@@ -100,9 +100,16 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
     setTotalCartPrice(
       cart
       .map(({ on_sale, sale_price, price }) => on_sale === 'Yes' ? +sale_price : +price)
-      .reduce((a, b) => a + b, 0)
+      .reduce((a, b) => a + b, 0) 
     );
   }, [cart])
+  
+  const removeItem = () => {
+    if (cart.length === 1) {
+      setTotalCartPrice(0);
+    };
+    removeFromCart(item)
+  }
 
   return (
     <React.Fragment>
@@ -114,7 +121,7 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
               className={classes.quantityBtn}
               variant="contained"
               size="small"
-              onClick={quantity < 2 ? () => removeFromCart(item) : reduceQuantity}
+              onClick={quantity < 2 ? removeItem : reduceQuantity}
             >
               <Icon className={classes.quantityIcon}>{quantity < 2 ? 'close' : 'remove'}</Icon>
             </Button>
