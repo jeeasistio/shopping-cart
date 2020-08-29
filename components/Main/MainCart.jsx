@@ -10,7 +10,8 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  Box
 } from '@material-ui';
 
 import { CartContext } from '/contexts/CartContext.jsx';
@@ -53,7 +54,7 @@ const MainCart = () => {
               <TableCell align="center">Unit</TableCell>
               <TableCell align="center">Sum</TableCell> 
             </TableRow> 
-          </TableHead> 
+          </TableHead>
           <TableBody> 
             {cart.map(item => (
               <CartItem 
@@ -64,6 +65,18 @@ const MainCart = () => {
                 setTotalCartPrice={setTotalCartPrice}
               />
             ))}
+            {!cart.length &&
+              <TableRow>
+                <TableCell colSpan="4">
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                  >
+                    <Typography variant="h5" color="textSecondary">Empty</Typography>
+                  </Box>
+                </TableCell>
+              </TableRow>
+            }
             <CartTotal totalCartPrice={totalCartPrice} />
           </TableBody>
         </Table>

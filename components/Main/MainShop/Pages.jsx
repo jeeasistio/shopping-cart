@@ -64,7 +64,7 @@ const Pages = () => {
   return (
     <Pagination className={classes.root}>
       <IconButton 
-        disabled={currPage === 1} 
+        disabled={currPage <= 1} 
         onClick={prevPage} 
         color="primary" 
         size="small"
@@ -72,8 +72,8 @@ const Pages = () => {
         <Icon className={classes.arrowIcon}>arrow_back_ios</Icon>
       </IconButton>
       {items}
-      <IconButton 
-        disabled={currPage === pageNumber}
+      <IconButton
+        disabled={currPage >= pageNumber || pageNumber <= 1}
         onClick={nextPage}
         color="primary"
         size="small"
