@@ -1,11 +1,20 @@
 import React from 'react';
 import {
+  makeStyles,
   TextField,
   Button,
   Typography
 } from '@material-ui';
 
 const ContactForm = () => {
+  
+  const useStyles = makeStyles(theme => ({
+    sendStyle: {
+      marginTop: 5
+    }
+  }))
+  
+  const classes = useStyles();
   
   const sendMail = (e) => {
     e.preventDefault();
@@ -19,6 +28,7 @@ const ContactForm = () => {
         fullWidth
         margin="normal"
         variant="outlined"
+        size="small"
       />
       <TextField 
         type="email"
@@ -26,6 +36,7 @@ const ContactForm = () => {
         fullWidth
         margin="normal"
         variant="outlined"
+        size="small"
       />
       <TextField 
         multiline
@@ -34,8 +45,16 @@ const ContactForm = () => {
         margin="normal"
         rows={8}
         variant="outlined"
+        size="small"
       />
-      <Button variant="contained" type="submit" fullWidth>Send Email</Button>
+      <Button
+        className={classes.sendStyle}
+        variant="contained" 
+        type="submit"
+        fullWidth
+      >
+        Send Email
+      </Button>
     </form>
   )
 }

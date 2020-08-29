@@ -102,8 +102,8 @@ const MainShop = () => {
       </div>
       <Grid
         className={classes.itemsStyle}
-        container spacing="2"
-        justify="center" 
+        container spacing="3"
+        justify="space-evenly" 
         alignItems="center"
       >
         {

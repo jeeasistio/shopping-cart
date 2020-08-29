@@ -27,7 +27,7 @@ const ProductItem = memo(({ item }) => {
   const useStyles = makeStyles(theme => ({
     cardMediaStyle: {
       width: '100%',
-      height: 200
+      height: 170
     },
     priceCtn: {
       display: 'flex',
