@@ -41,7 +41,7 @@ const MainShop = () => {
       justifyContent: 'space-between',
       alignItems: 'center',
       margin: '10px auto',
-      width: '75%',
+      width: '80%',
       '& > *': {
         margin: '0px 8px'
       }
