@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Header = () => {
+const Footer = () => {
   return (
-    <section id="header">
-    </section>
+    <footer>
+    </footer>
   )
 }
 
-export default Header;
+export default Footer;
