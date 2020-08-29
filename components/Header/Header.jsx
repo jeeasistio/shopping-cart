@@ -4,7 +4,8 @@ import HeaderDrawer from './HeaderDrawer.jsx';
 import {
   AppBar,
   useScrollTrigger,
-  Slide
+  Slide,
+  Hidden
 } from '@material-ui';
 
 const Header = () => {
@@ -31,7 +32,9 @@ const Header = () => {
           <HeaderToolbar toggleDrawer={toggleDrawer} />
         </AppBar>
       </HideOnScroll>
-      <HeaderDrawer drawerIsOpen={drawerIsOpen} setDrawerIsOpen={setDrawerIsOpen} />
+      <Hidden mdUp>
+        <HeaderDrawer drawerIsOpen={drawerIsOpen} setDrawerIsOpen={setDrawerIsOpen} />
+      </Hidden>
     </React.Fragment>
   )
 }

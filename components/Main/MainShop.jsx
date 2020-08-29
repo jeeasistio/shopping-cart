@@ -106,17 +106,15 @@ const MainShop = () => {
         justify="space-evenly" 
         alignItems="center"
       >
-        {
-          fetching ? 
-            <CircularProgress className={classes.shopTitle}  />
+        {fetching ? 
+          <CircularProgress className={classes.shopTitle}  />
+          :
+          !products.length ?
+            <Typography className={classes.shopTitle} variant="h5" color="textSecondary">No Results Found</Typography>
             :
-            !products.length ?
-              <Typography className={classes.shopTitle} variant="h5" color="textSecondary">No Results Found</Typography>
-              :
-              products.map(item => (
-                <ProductItem item={item} />
-              ))
-        }
+            products.map(item => (
+              <ProductItem item={item} />
+            ))}
       </Grid>
       {!fetching && <Pages />}
     </section>

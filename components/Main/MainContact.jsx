@@ -22,7 +22,7 @@ const MainContact = () => {
     },
     cardStyle: {
       padding: '15px 25px',
-      margin: 10
+      margin: '10px 20px'
     }
   }))
   
@@ -41,7 +41,7 @@ const MainContact = () => {
         item
         component={Paper} 
         xs={12}
-        sm={10}
+        md={5}
       >
         <ContactForm />
       </Grid>
@@ -50,7 +50,7 @@ const MainContact = () => {
         item
         component={Paper} 
         xs={12}
-        sm={10}
+        md={5}
       >
         <ContactDetails />
       </Grid>

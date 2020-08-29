@@ -1,5 +1,10 @@
 import React from 'react';
-import { Box, Icon, IconButton, Typography } from '@material-ui';
+import {
+  Box,
+  Icon,
+  IconButton,
+  Typography
+} from '@material-ui';
 
 const ContactDetails = () => {
 
@@ -20,6 +25,7 @@ const ContactDetails = () => {
 
   return (
     <React.Fragment>
+      <Typography variant="h6" align="center">Talk to Us</Typography>
       {
         details.map( ({icon, info}) => (
           <Box
@@ -27,8 +33,9 @@ const ContactDetails = () => {
             flexDirection={['column', 'row']}
             justifyContent="space-between"
             alignItems="center"
-            m={2}
-            textAlign="center"
+            mx={2}
+            my={4}
+            textAlign={['center', 'right']}
           >
             <Icon>{icon}</Icon>
             <Typography>{info}</Typography>
@@ -42,7 +49,7 @@ const ContactDetails = () => {
         {
           ['facebook', 'google', 'twitter', 'github'].map(brand => (
             <IconButton>
-              <Icon className={`fab fa-${brand}`} />
+              <Icon fontSize="1rem" className={`fab fa-${brand}`} />
             </IconButton>
           ))
         }

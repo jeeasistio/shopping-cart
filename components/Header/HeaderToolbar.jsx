@@ -1,10 +1,12 @@
 import React from 'react';
+import ToolbarLinks from './HeaderToolbar/ToolbarLinks.jsx';
 import {
   makeStyles,
   Typography,
   Toolbar,
   IconButton,
-  Icon
+  Icon,
+  Hidden
 } from '@material-ui';
 
 const HeaderToolbar = ({ toggleDrawer }) => {
@@ -28,7 +30,12 @@ const HeaderToolbar = ({ toggleDrawer }) => {
   return (
     <Toolbar className={classes.navStyle} component="nav">
       <Typography>Shopy</Typography>
-      <IconButton className={classes.menuStyle} onClick={toggleDrawer}><Icon>menu</Icon></IconButton>
+      <Hidden mdUp>
+        <IconButton className={classes.menuStyle} onClick={toggleDrawer}><Icon>menu</Icon></IconButton>
+      </Hidden>
+      <Hidden smDown>
+        <ToolbarLinks />
+      </Hidden>
     </Toolbar>
   )
 }

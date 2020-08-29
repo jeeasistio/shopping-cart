@@ -12,42 +12,48 @@ import {
 
 const HeaderDrawer = ({ drawerIsOpen, setDrawerIsOpen }) => {
 
+  const links = [
+    {
+      icon: 'home',
+      link: '/home',
+      label: 'Home'
+    },
+    {
+      icon: 'local_mall',
+      link: '/shop',
+      label: 'Shop'
+    },
+    {
+      icon: 'shopping_cart',
+      link: '/cart',
+      label: 'Cart'
+    },
+    {
+      icon: 'email',
+      link: '/contact',
+      label: 'Contact'
+    },
+    {
+      icon: 'account_circle',
+      link: '/user',
+      label: 'User'
+    }
+  ];
+
   return (
     <Drawer anchor="right" open={drawerIsOpen} onClick={() => setDrawerIsOpen(false)} onClose={() => setDrawerIsOpen(false)}>
       <List>
         <ListItem button>
             <Icon>arrow_forward_ios</Icon>
         </ListItem>
-        <ListItem button component={Link} to="/home" exact>
-          <ListItemIcon>
-            <Icon>home</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button component={Link} to="/shop" exact>
-          <ListItemIcon>
-            <Icon>local_mall</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Shop" />
-        </ListItem>
-        <ListItem button component={Link} to="/cart" exact>
-          <ListItemIcon>
-            <Icon>shopping_cart</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Cart" />
-        </ListItem>
-        <ListItem button component={Link} to="/contact" exact>
-          <ListItemIcon>
-            <Icon>email</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Contact" />
-        </ListItem>
-        <ListItem button component={Link} to="/user" exact>
-          <ListItemIcon>
-            <Icon>account_circle</Icon>
-          </ListItemIcon>
-            <ListItemText primary="User" />
-        </ListItem>
+        {links.map( ({icon, link, label}) => (
+          <ListItem button component={Link} to={link} exact>
+            <ListItemIcon>
+              <Icon>{icon}}</Icon>
+            </ListItemIcon>
+            <ListItemText primary={label} />
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   )
