@@ -42,11 +42,11 @@ const HeaderDrawer = ({ drawerIsOpen, setDrawerIsOpen }) => {
           </ListItemIcon>
           <ListItemText primary="Contact" />
         </ListItem>
-        <ListItem button component={Link} to="/login" exact>
+        <ListItem button component={Link} to="/user" exact>
           <ListItemIcon>
             <Icon>account_circle</Icon>
           </ListItemIcon>
-            <ListItemText primary="Login" />
+            <ListItemText primary="User" />
         </ListItem>
       </List>
     </Drawer>

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MainLogin = () => {
+const MainUser = () => {
   return (
     <section>
-      <h1>Login</h1>
+      <h1>User</h1>
     </section>
   )
 }
 
-export default MainLogin;
+export default MainUser;

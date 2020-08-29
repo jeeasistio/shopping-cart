@@ -4,7 +4,7 @@ import MainHome from './MainHome.jsx';
 import MainShop from './MainShop.jsx';
 import MainCart from './MainCart.jsx';
 import MainContact from './MainContact.jsx';
-import MainLogin from './MainLogin.jsx'
+import MainUser from './MainUser.jsx'
 
 const Main = () => {
   return (
@@ -14,7 +14,7 @@ const Main = () => {
       <Route path="/shop" exact component={MainShop} />
       <Route path="/cart" exact component={MainCart} />
       <Route path="/contact" exact component={MainContact} />
-      <Route path="/login" exact component={MainLogin} />
+      <Route path="/user" exact component={MainUser} />
     </section>
   )
 }
