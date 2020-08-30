@@ -8,6 +8,7 @@ import { CssBaseline } from '@material-ui';
 
 import { ProductsProvider } from '/contexts/ProductsContext.jsx';
 import { CartProvider } from '/contexts/CartContext.jsx';
+import { UserProvider } from '/contexts/UserContext.jsx';
 
 const App = () => {
   return (
@@ -17,9 +18,11 @@ const App = () => {
           <CssBaseline>
             <ProductsProvider>
               <CartProvider>
-                <Header />
-                <Main />
-                <Footer />
+                <UserProvider>
+                  <Header />
+                  <Main />
+                  <Footer />
+                </UserProvider>
               </CartProvider>
             </ProductsProvider>
           </CssBaseline>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import CartImage from './CartImage.jsx';
 import {
   makeStyles,
   TableRow,
@@ -55,9 +54,6 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
       maxWidth: 100,
       maxHeight: 100,
       borderRadius: 5
-    },
-    imgButton: {
-      padding: 0
     }
   }))
 
@@ -65,7 +61,6 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
 
   const {
     brand,
-    imageUrl: image,
     name,
     on_sale,
     price,
@@ -77,7 +72,6 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
   const [quantity, setQuantity] = useState(1);
   const [isSale, setIsSale] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
-  const [imageIsOpen, setImageIsOpen] = useState(false);
 
   const unitPrice = isSale ? +sale_price : +price;
   const sum = quantity * unitPrice;
@@ -141,12 +135,10 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
         <TableCell align="center">${sum.toFixed(2)}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell className={classes.collapseCtn} colSpan="4">
+        <TableCell className={classes.collapseCtn} colSpan={4}>
           <Collapse in={detailsIsOpen} timeout="auto" unmountOnExit>
-            <Box className={classes.detailsCtn} margin="1">
-              <Button classes={{root: classes.imgButton}} onClick={() => setImageIsOpen(true)}>
-                <img className={classes.detailsImg} src={thumbnail} />
-              </Button>
+            <Box className={classes.detailsCtn} m={1}>
+              <img className={classes.detailsImg} src={thumbnail} />
               <div>
                 <Typography variant="subtitle2">Brand:</Typography>
                 <br />
@@ -161,11 +153,6 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
           </Collapse>
         </TableCell>
       </TableRow>
-      <CartImage
-        image={image}
-        imageIsOpen={imageIsOpen}
-        setImageIsOpen={setImageIsOpen}
-      />
     </React.Fragment>
   )
 }

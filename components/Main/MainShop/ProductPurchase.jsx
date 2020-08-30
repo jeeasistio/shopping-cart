@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, Button, Icon } from '@material-ui';
 
-const ProductPurchase = ({ isOnCart, cartBtn }) => {
+const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
   
   const useStyles = makeStyles(theme => ({
     buttonsCtn: {
@@ -27,6 +27,7 @@ const ProductPurchase = ({ isOnCart, cartBtn }) => {
       </Button>
       <Button 
         className={classes.purchaseBtn} 
+        onClick={() => purchaseItem(item)}
         fullWidth 
         variant="contained"
         startIcon={<Icon>attach_money</Icon>}

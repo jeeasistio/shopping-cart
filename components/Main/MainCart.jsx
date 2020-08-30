@@ -15,10 +15,12 @@ import {
 } from '@material-ui';
 
 import { CartContext } from '/contexts/CartContext.jsx';
+import { UserContext } from '/contexts/UserContext.jsx';
 
 const MainCart = () => {
 
   const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart } = useContext(CartContext);
+  const { balance, purchaseItem } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({
     cartTitle: {
@@ -77,11 +79,11 @@ const MainCart = () => {
                 </TableCell>
               </TableRow>
             }
-            <CartTotal totalCartPrice={totalCartPrice} />
+            <CartTotal totalCartPrice={totalCartPrice} balance={balance} />
           </TableBody>
         </Table>
       </TableContainer>
-      <CartPurchase cart={cart} clearCart={clearCart} />
+      <CartPurchase cart={cart} clearCart={clearCart} purchaseItem={purchaseItem} />
     </section>
   )
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 import { TableRow, TableCell } from '@material-ui';
 
-const CartTotal = ({ totalCartPrice }) => {
+const CartTotal = ({ totalCartPrice, balance }) => {
 
-  const balance = 500
   const balanceAfterPurchase = balance - totalCartPrice
 
   return (

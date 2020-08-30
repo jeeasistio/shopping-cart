@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import he from 'he';
 import ProductKeywords from './ProductKeywords.jsx';
 import ProductPurchase from './ProductPurchase.jsx';
@@ -15,7 +15,11 @@ import {
   Toolbar
 } from '@material-ui';
 
+import { UserContext } from '/contexts/UserContext.jsx';
+
 const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart, isSale }) => {
+  
+  const { balance, purchaseItem } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -115,7 +119,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
     <Dialog classes={{paper : classes.root}} open={detailsIsOpen} onClose={() => setDetailsIsOpen} fullScreen>
       <AppBar position="static" className={classes.navStyle}>
         <Toolbar className={classes.backCtn}>
-          <Typography>Your Balance: $0.00</Typography>
+          <Typography>Your Balance: ${balance.toFixed(2)}</Typography>
           <IconButton className={classes.backBtn} onClick={() => setDetailsIsOpen(false)}><Icon>arrow_backward</Icon></IconButton>
         </Toolbar>
       </AppBar>
@@ -142,7 +146,12 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
         </div>
         <Typography variant="body2">{description && he.decode(description)}</Typography>
       </div>
-      <ProductPurchase cartBtn={cartBtn} isOnCart={isOnCart} />
+      <ProductPurchase 
+        item={item}
+        cartBtn={cartBtn} 
+        isOnCart={isOnCart} 
+        purchaseItem={purchaseItem} 
+      />
     </Dialog>
   )
 }

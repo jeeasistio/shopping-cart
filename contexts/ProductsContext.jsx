@@ -16,7 +16,7 @@ const ProductsProvider = ({ children }) => {
   const searchProducts = async () => {
     setFetching(true);
     const res = await fetch(
-      `https://api.searchspring.net/api/search/search?siteId=scmq7n&q=${searchQuery}&resultsFormat=native&page=${currPage}&sort.${field}=${direction}`
+      `https://api.searchspring.net/api/search/search?siteId=scmq7n&q=${searchQuery}&resultsFormat=native&page=${currPage}&resultsPerPage=50&sort.${field}=${direction}`
     );
     const data = await res.json();
     setFetching(false);
