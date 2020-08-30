@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui';
 
-const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice }) => {
+const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice, onCartQuantities, setOnCartQuantities }) => {
 
   const useStyles = makeStyles(theme => ({
     nameStyle: {
@@ -97,6 +97,13 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
       .reduce((a, b) => a + b, 0) 
     );
   }, [cart])
+  
+  useEffect(() => {
+    setOnCartQuantities({
+      ...onCartQuantities,
+      [name]: quantity
+    })
+  }, [quantity, cart])
   
   const removeItem = () => {
     if (cart.length === 1) {

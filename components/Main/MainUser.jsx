@@ -34,7 +34,7 @@ const MainUser = () => {
 
   const userDetails = {
     username: 'JeeAsistio',
-    userid: Math.floor(Math.random() * 999999),
+    userid: 805521,
     useremail: 'jeeasistio08@gmail.com'
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Button, Icon } from '@material-ui';
 
-const CartPurchase = ({ cart, clearCart, purchaseItem }) => {
+const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCartQuantities }) => {
   
   const useStyles = makeStyles(theme => ({
     buttonsCtn: {
@@ -16,9 +16,11 @@ const CartPurchase = ({ cart, clearCart, purchaseItem }) => {
   
   const purchaseOnCart = () => {
     cart.map(item => {
-      console.log(item.name);
-      purchaseItem(item)
+      const { name } = item;
+      const quantity = onCartQuantities[name];
+      purchaseItem(item, quantity)
     })
+    clearCart();
   }
   
   return (
@@ -32,7 +34,7 @@ const CartPurchase = ({ cart, clearCart, purchaseItem }) => {
         Clear Cart
       </Button>
       <Button 
-        onClick={() => purchaseOnCart(cart)}
+        onClick={purchaseOnCart}
         fullWidth 
         variant="contained"
         startIcon={<Icon>attach_money</Icon>}

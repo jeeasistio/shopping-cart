@@ -19,7 +19,7 @@ import { UserContext } from '/contexts/UserContext.jsx';
 
 const MainCart = () => {
 
-  const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart } = useContext(CartContext);
+  const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart, onCartQuantities, setOnCartQuantities} = useContext(CartContext);
   const { balance, purchaseItem } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({
@@ -65,6 +65,8 @@ const MainCart = () => {
                 removeFromCart={removeFromCart}
                 totalCartPrice={totalCartPrice}
                 setTotalCartPrice={setTotalCartPrice}
+                onCartQuantities={onCartQuantities} 
+                setOnCartQuantities={setOnCartQuantities}
               />
             ))}
             {!cart.length &&
@@ -83,7 +85,7 @@ const MainCart = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <CartPurchase cart={cart} clearCart={clearCart} purchaseItem={purchaseItem} />
+      <CartPurchase cart={cart} clearCart={clearCart} purchaseItem={purchaseItem} onCartQuantities={onCartQuantities} setOnCartQuantities={setOnCartQuantities} />
     </section>
   )
 }
