@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { makeStyles, Button, Icon } from '@material-ui';
 
 const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
-  
+
   const useStyles = makeStyles(theme => ({
     buttonsCtn: {
       margin: 0,
@@ -13,9 +13,9 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
       }
     }
   }))
-  
+
   const classes = useStyles();
-  
+
   return (
     <div className={classes.buttonsCtn}>
       <Button 

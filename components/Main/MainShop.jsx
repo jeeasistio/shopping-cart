@@ -15,7 +15,7 @@ import {
 import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const MainShop = () => {
-  
+
   const {
     products,
     searchProducts,
@@ -68,7 +68,7 @@ const MainShop = () => {
     e.preventDefault();
     setSearchQuery(inputText);
   }
-  
+
   useLayoutEffect(() => {
     searchProducts();
   }, [searchQuery, field, direction, currPage])
@@ -109,12 +109,10 @@ const MainShop = () => {
       >
         {fetching ? 
           <CircularProgress className={classes.shopTitle}  />
-          :
-          !products.length ?
-            <Typography className={classes.shopTitle} variant="h5" color="textSecondary">No Results Found</Typography>
-            :
-            products.map(item => (
-              <ProductItem item={item} />
+        : !products.length ?
+          <Typography className={classes.shopTitle} variant="h5" color="textSecondary">No Results Found</Typography>
+        : products.map(item => (
+          <ProductItem item={item} />
             ))}
       </Grid>
       {!fetching && <Pages />}

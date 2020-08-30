@@ -20,7 +20,7 @@ const CartProvider = ({ children }) => {
       cart.filter(CI => CI.id !== item.id)
     )
   }
-  
+
   const clearCart = () => {
     setCart([]);
     setTotalCartPrice(0);

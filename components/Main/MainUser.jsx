@@ -12,7 +12,7 @@ import {
 import { UserContext } from '/contexts/UserContext.jsx';
 
 const MainUser = () => {
-  
+
   const { balance, history, removeHistory } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({

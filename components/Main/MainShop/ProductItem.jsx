@@ -21,7 +21,7 @@ import {
 const ProductItem = memo(({ item }) => {
 
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
-  
+
   const [isOnCart, setIsOnCart] = useState(false);
 
   const useStyles = makeStyles(theme => ({
@@ -29,7 +29,7 @@ const ProductItem = memo(({ item }) => {
       width: '100%',
       height: 150
     },
-    cardContentStyle:{
+    cardContentStyle: {
       padding: '5px 10px'
     },
     priceCtn: {
@@ -55,11 +55,11 @@ const ProductItem = memo(({ item }) => {
   }))
 
   const classes = useStyles();
-  
+
   const [imageIsOpen, setImageIsOpen] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
   const [isSale, setIsSale] = useState(false);
-  
+
   const {
     imageUrl: image,
     name,
@@ -68,11 +68,11 @@ const ProductItem = memo(({ item }) => {
     on_sale,
     id
   } = item;
-  
+
   const cartBtn = () => {
     !isOnCart ? addToCart(item) : removeFromCart(item);
   }
-  
+
   useEffect(() => {
     setIsOnCart(cart.some(CI => CI.id === item.id));
     setIsSale(on_sale === 'Yes');

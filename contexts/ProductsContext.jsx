@@ -12,7 +12,7 @@ const ProductsProvider = ({ children }) => {
   const [field, setField] = useState('relevance');
   const [direction, setDirection] = useState('desc');
   const [totalPages, setTotalPages] = useState(1);
-  
+
   const searchProducts = async () => {
     setFetching(true);
     const res = await fetch(

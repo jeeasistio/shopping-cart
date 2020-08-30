@@ -52,11 +52,11 @@ const Pages = () => {
       </IconButton>
     );
   }
-  
+
   const prevPage = () => {
     setCurrPage(currPage - 1);
   }
-  
+
   const nextPage = () => {
     setCurrPage(currPage + 1);
   }

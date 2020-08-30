@@ -18,7 +18,7 @@ import {
 import { UserContext } from '/contexts/UserContext.jsx';
 
 const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCart, isSale }) => {
-  
+
   const { balance, purchaseItem } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({

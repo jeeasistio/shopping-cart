@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Backdrop } from '@material-ui';
 
 const ProductImage = ({ image, imageIsOpen, setImageIsOpen }) => {
-  
+
   const useStyles = makeStyles(theme => ({
     backdropStyle: {
       zIndex: theme.zIndex.drawer + 1,
@@ -15,9 +15,9 @@ const ProductImage = ({ image, imageIsOpen, setImageIsOpen }) => {
       maxHeight: '80%'
     }
   }))
-  
+
   const classes = useStyles();
-  
+
   return (
     <Backdrop
       className={classes.backdropStyle} 

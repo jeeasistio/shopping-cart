@@ -14,14 +14,16 @@ const UserProvider = ({ children }) => {
       ...prevHistory,
       {
         name,
-        unitPrice: (on_sale === 'Yes' ? +sale_price : +price) * quantity,
-        quantity
+        quantity,
+        totalPrice: (on_sale === 'Yes' ? +sale_price : +price) * quantity
       }
     ])
   }
 
   const removeHistory = (index) => {
-    setHistory([...history.slice(0, index), ...history.slice(index + 1, history.length)])
+    setHistory([
+      ...history.slice(0, index), ...history.slice(index + 1, history.length)
+    ])
   }
 
   return (

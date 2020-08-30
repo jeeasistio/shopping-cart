@@ -26,33 +26,29 @@ const ContactDetails = () => {
   return (
     <React.Fragment>
       <Typography variant="h6" align="center">Talk to Us</Typography>
-      {
-        details.map( ({icon, info}) => (
-          <Box
-            display="flex"
-            flexDirection={['column', 'row']}
-            justifyContent="space-between"
-            alignItems="center"
-            mx={2}
-            my={4}
-            textAlign={['center', 'right']}
-          >
-            <Icon>{icon}</Icon>
-            <Typography>{info}</Typography>
-          </Box>
-        ))
-      }
+      {details.map( ({icon, info}) => (
+        <Box
+          display="flex"
+          flexDirection={['column', 'row']}
+          justifyContent="space-between"
+          alignItems="center"
+          mx={2}
+          my={4}
+          textAlign={['center', 'right']}
+        >
+          <Icon>{icon}</Icon>
+          <Typography>{info}</Typography>
+        </Box>
+      ))}
       <hr />
       <Box
         textAlign="center"
       >
-        {
-          ['facebook', 'google', 'twitter', 'github'].map(brand => (
-            <IconButton>
-              <Icon fontSize="1rem" className={`fab fa-${brand}`} />
-            </IconButton>
-          ))
-        }
+        {['facebook', 'google', 'twitter', 'github'].map(brand => (
+          <IconButton>
+            <Icon fontSize="1rem" className={`fab fa-${brand}`} />
+          </IconButton>
+        ))}
       </Box>
     </React.Fragment>
   )

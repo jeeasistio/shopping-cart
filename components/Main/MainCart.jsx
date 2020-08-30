@@ -19,7 +19,7 @@ import { UserContext } from '/contexts/UserContext.jsx';
 
 const MainCart = () => {
 
-  const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart, onCartQuantities, setOnCartQuantities} = useContext(CartContext);
+  const { cart, removeFromCart, totalCartPrice, setTotalCartPrice, clearCart, onCartQuantities, setOnCartQuantities } = useContext(CartContext);
   const { balance, purchaseItem } = useContext(UserContext);
 
   const useStyles = makeStyles(theme => ({

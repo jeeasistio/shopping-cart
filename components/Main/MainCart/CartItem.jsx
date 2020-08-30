@@ -94,17 +94,17 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
     setTotalCartPrice(
       cart
       .map(({ on_sale, sale_price, price }) => on_sale === 'Yes' ? +sale_price : +price)
-      .reduce((a, b) => a + b, 0) 
+      .reduce((a, b) => a + b, 0)
     );
   }, [cart])
-  
+
   useEffect(() => {
     setOnCartQuantities({
       ...onCartQuantities,
       [name]: quantity
     })
   }, [quantity, cart])
-  
+
   const removeItem = () => {
     if (cart.length === 1) {
       setTotalCartPrice(0);

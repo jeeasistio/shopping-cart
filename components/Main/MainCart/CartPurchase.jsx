@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Button, Icon } from '@material-ui';
 
 const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCartQuantities }) => {
-  
+
   const useStyles = makeStyles(theme => ({
     buttonsCtn: {
       padding: '5px 15px',
@@ -11,9 +11,9 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
       }
     }
   }))
-  
+
   const classes = useStyles();
-  
+
   const purchaseOnCart = () => {
     cart.map(item => {
       const { name } = item;
@@ -22,7 +22,7 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
     })
     clearCart();
   }
-  
+
   return (
     <div className={classes.buttonsCtn}>
       <Button 

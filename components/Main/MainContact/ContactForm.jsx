@@ -7,19 +7,19 @@ import {
 } from '@material-ui';
 
 const ContactForm = () => {
-  
+
   const useStyles = makeStyles(theme => ({
     sendStyle: {
       marginTop: 5
     }
   }))
-  
+
   const classes = useStyles();
-  
+
   const sendMail = (e) => {
     e.preventDefault();
   }
-  
+
   return (
     <form onSubmit={sendMail}>
       <Typography variant="h6" align="center">Email us</Typography>

@@ -11,7 +11,7 @@ import {
 const Header = () => {
 
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  
+
   const HideOnScroll = ({ children, window }) => {
     const trigger = useScrollTrigger({ target: window ? window() : undefined });
     return (

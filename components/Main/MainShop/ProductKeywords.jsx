@@ -7,7 +7,7 @@ import {
 import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const ProductKeywords = ({ keywords }) => {
-  
+
   const { setSearchQuery, setInputText, setCurrPage } = useContext(ProductsContext);
 
   const useStyles = makeStyles(theme => ({
@@ -18,10 +18,10 @@ const ProductKeywords = ({ keywords }) => {
   }))
 
   const classes = useStyles();
-  
+
   const keywordClick = (keyword) => {
     setSearchQuery(keyword);
-    setInputText(keyword),
+    setInputText(keyword);
     setCurrPage(1);
   }
 

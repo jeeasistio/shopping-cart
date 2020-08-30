@@ -18,7 +18,7 @@ const UserHistory = ({ history, removeHistory }) => {
       py={2}
     >
       <Typography>Purchase History</Typography>
-      {history.map( ({name, unitPrice}, index) => (
+      {history.map( ({name, quantity, totalPrice}, index) => (
         <Box
           width={"100%"}
           display="flex"
@@ -29,7 +29,8 @@ const UserHistory = ({ history, removeHistory }) => {
             <IconButton onClick={() => removeHistory(index)}><Icon>close</Icon></IconButton>
             {name}
           </Typography>
-          <Typography>${unitPrice.toFixed(2)}</Typography>
+          <Typography>{quantity}</Typography>
+          <Typography>${totalPrice.toFixed(2)}</Typography>
         </Box>
       ))}
     </Box>

@@ -8,7 +8,7 @@ import {
 } from '@material-ui';
 
 const ToolbarLinks = () => {
-  
+
   const useStyles = makeStyles(theme => ({
     linkStyle: {
       color: '#fff',
