@@ -27,27 +27,30 @@ const ProductItem = memo(({ item }) => {
   const useStyles = makeStyles(theme => ({
     cardMediaStyle: {
       width: '100%',
-      height: 170
+      height: 150
+    },
+    cardContentStyle:{
+      padding: '5px 10px'
     },
     priceCtn: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
+      fontWeight: 500
     },
     origPrice: {
       textDecoration: 'line-through',
       marginRight: 5
     },
-    popularityStyle: {
-      display: 'flex',
-      alignItems: 'center'
-    },
-    popularityIconStyle: {
-      fontSize: '1.1rem',
-      color: '#f55',
-    },
     cardActionsStyle: {
       display: 'flex',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      padding: 5
+    },
+    viewDetailsBtn: {
+      fontSize: '0.8rem'
+    },
+    cartBtnStyle: {
+      fontSize: '1.3rem'
     }
   }))
 
@@ -60,7 +63,6 @@ const ProductItem = memo(({ item }) => {
   const {
     imageUrl: image,
     name,
-    popularity,
     price,
     sale_price,
     on_sale,
@@ -78,24 +80,23 @@ const ProductItem = memo(({ item }) => {
 
   return (
     <React.Fragment>
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={6} sm={4} md={3}>
       <Zoom in={true}>
         <Card>
           <CardActionArea onClick={() => setImageIsOpen(true)}>
             <CardMedia className={classes.cardMediaStyle} image={image} />
           </CardActionArea>
-          <CardContent>
-            <Typography paragraph>{he.decode(name)}</Typography>
-            <Typography className={classes.priceCtn} variant="h6">
-              {isSale && <Typography color="textSecondary" className={classes.origPrice}>${(+price).toFixed(2)}</Typography>}
+          <CardContent className={classes.cardContentStyle}>
+            <Typography noWrap>{he.decode(name)}</Typography>
+            <Typography className={classes.priceCtn}>
+              {isSale && <Typography color="textSecondary" variant="body2" className={classes.origPrice}>${(+price).toFixed(2)}</Typography>}
               {isSale ? `$${(+sale_price).toFixed(2)}` : `$${(+price).toFixed(2)}`}
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActionsStyle}>
-            <Button onClick={() => setDetailsIsOpen(true)} >View Details</Button>
-            <Typography className={classes.popularityStyle}><Icon className={classes.popularityIconStyle}>favorite</Icon>{popularity}</Typography>
+            <Button className={classes.viewDetailsBtn} onClick={() => setDetailsIsOpen(true)}>Details</Button>
             <IconButton onClick={cartBtn}>
-              <Icon>{!isOnCart ? 'add_shopping_cart' : 'remove_shopping_cart'}</Icon>
+              <Icon className={classes.cartBtnStyle}>{!isOnCart ? 'add_shopping_cart' : 'remove_shopping_cart'}</Icon>
             </IconButton>
           </CardActions>
         </Card>
