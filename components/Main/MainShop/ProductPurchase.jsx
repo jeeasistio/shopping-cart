@@ -1,5 +1,12 @@
-import React, { useContext } from 'react';
-import { makeStyles, Button, Icon } from '@material-ui';
+import React, { useState } from 'react';
+import {
+  makeStyles,
+  Button,
+  Icon,
+  Dialog,
+  DialogContent,
+  DialogActions
+} from '@material-ui';
 
 const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
 
@@ -15,6 +22,13 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
   }))
 
   const classes = useStyles();
+  
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  
+  const confirmPurchase = () => {
+    purchaseItem(item);
+    setDialogIsOpen(false);
+  }
 
   return (
     <div className={classes.buttonsCtn}>
@@ -27,13 +41,22 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
       </Button>
       <Button 
         className={classes.purchaseBtn} 
-        onClick={() => purchaseItem(item)}
+        onClick={() => setDialogIsOpen(true)}
         fullWidth 
         variant="contained"
         startIcon={<Icon>attach_money</Icon>}
       >
         Purchase
       </Button>
+      <Dialog open={dialogIsOpen} onClose={() => setDialogIsOpen(false)}>
+        <DialogContent>
+          Are you sure you want to purchase this item?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogIsOpen(false)}>No</Button>
+          <Button onClick={confirmPurchase}>Yes</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }

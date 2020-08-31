@@ -6,8 +6,10 @@ import {
   Box,
   Avatar,
   Icon,
+  IconButton,
   Typography,
-  Paper
+  Paper,
+  Divider
 } from '@material-ui';
 
 import { UserContext } from '/contexts/UserContext.jsx';
@@ -19,7 +21,8 @@ const MainUser = () => {
   const useStyles = makeStyles(theme => ({
     root: {
       maxWidth: '100%',
-      margin: 0
+      margin: 0,
+      padding: '15px 0px'
     },
     avatarStyle: {
       fontSize: '3.5rem',
@@ -34,12 +37,12 @@ const MainUser = () => {
   const classes = useStyles();
 
   const userDetails = {
-    username: 'JeeAsistio',
-    userid: 805521,
-    useremail: 'jeeasistio08@gmail.com'
+    userName: 'JeeAsistio',
+    userId: 805521,
+    userEmail: 'jeeasistio08@gmail.com'
   }
 
-  const { username, userid, useremail } = userDetails;
+  const { userName, userId, userEmail } = userDetails;
 
   return (
     <Grid 
@@ -62,15 +65,15 @@ const MainUser = () => {
         >
           <Box>
             <Typography variant="subtitle2">Name:</Typography>
-            <Typography> {username}</Typography>
+            <Typography>{userName}</Typography>
           </Box>
           <Box>
             <Typography variant="subtitle2">ID:</Typography>
-            <Typography> {userid}</Typography>
+            <Typography>{userId}</Typography>
           </Box>
           <Box>
             <Typography variant="subtitle2">Email:</Typography>
-            <Typography> {useremail}</Typography>
+            <Typography>{userEmail}</Typography>
           </Box>
         </Box>
       </Grid>
@@ -86,8 +89,9 @@ const MainUser = () => {
           alignItems="center"
           px={[1, 4]}
           py={2}
-        >
-          <Typography>Purchase History</Typography>
+        > 
+          <Typography paragraph>Purchase History</Typography>
+          <Divider component={Box} alignSelf="stretch" />
           {history.map( ({name, quantity, unitPrice, totalPrice, date}, index) => (
             <HistoryItem 
               removeHistory={removeHistory}
@@ -99,6 +103,11 @@ const MainUser = () => {
               index={index}
             />
           ))}
+          {!history.length && 
+            <Box my={2} textAlign="center">
+              <Typography color="textSecondary">No Purchases</Typography>
+            </Box>
+          }
         </Box>
       </Grid>
     </Grid>

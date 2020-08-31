@@ -36,7 +36,7 @@ const HistoryItem = ({ removeHistory, name, quantity, unitPrice, totalPrice, dat
             <Icon>close</Icon>
           </IconButton>
           <Button size="small" onClick={() => setDetailsIsOpen(!detailsIsOpen)}>
-            <Typography variant="button" noWrap>{name}</Typography>
+            <Typography variant="subtitle2" noWrap>{name}</Typography>
           </Button>
         </Box>
         <Typography>${totalPrice.toFixed(2)}</Typography>
@@ -48,8 +48,6 @@ const HistoryItem = ({ removeHistory, name, quantity, unitPrice, totalPrice, dat
         timeout="auto"
         unmountOnExit
         alignSelf="flex-start"
-        display="flex"
-        flexDirection={['column', 'column', 'row']}
       >
         <Box m={1}>
           <Typography variant="subtitle2"> Product Name:</Typography>
@@ -67,7 +65,7 @@ const HistoryItem = ({ removeHistory, name, quantity, unitPrice, totalPrice, dat
           <Typography variant="subtitle2">Price per Unit:</Typography>
           <Typography>${unitPrice.toFixed(2)}</Typography>
         </Box>
-      </Box> 
+      </Box>
     </React.Fragment>
   )
 }

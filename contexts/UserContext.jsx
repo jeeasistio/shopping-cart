@@ -11,6 +11,7 @@ const UserProvider = ({ children }) => {
     const { name, price, on_sale, sale_price } = item;
     const unitPrice = on_sale === 'Yes' ? +sale_price : +price;
     const totalPrice = unitPrice * quantity;
+    const d = new Date();
     setBalance(prevBalance => prevBalance - totalPrice);
     setHistory(prevHistory => [
       ...prevHistory,
@@ -19,7 +20,7 @@ const UserProvider = ({ children }) => {
         quantity,
         unitPrice,
         totalPrice,
-        date: new Date(Date.now()).toDateString()
+        date: `${d.toDateString()} ${('' + d.getHours()).padStart(2, '0')}:${('' + d.getMinutes()).padStart(2, '0')}`
       }
     ])
   }
