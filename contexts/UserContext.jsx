@@ -9,13 +9,17 @@ const UserProvider = ({ children }) => {
 
   const purchaseItem = (item, quantity = 1) => {
     const { name, price, on_sale, sale_price } = item;
-    setBalance(prevBalance => prevBalance - ((on_sale === 'Yes' ? +sale_price : price) * quantity));
+    const unitPrice = on_sale === 'Yes' ? +sale_price : +price;
+    const totalPrice = unitPrice * quantity;
+    setBalance(prevBalance => prevBalance - totalPrice);
     setHistory(prevHistory => [
       ...prevHistory,
       {
         name,
         quantity,
-        totalPrice: (on_sale === 'Yes' ? +sale_price : +price) * quantity
+        unitPrice,
+        totalPrice,
+        date: new Date(Date.now()).toDateString()
       }
     ])
   }

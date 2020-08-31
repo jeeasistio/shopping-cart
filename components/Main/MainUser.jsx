@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import UserHistory from './MainUser/UserHistory.jsx';
+import HistoryItem from './MainUser/HistoryItem.jsx';
 import {
   makeStyles,
   Grid,
   Box,
   Avatar,
   Icon,
-  Typography
+  Typography,
+  Paper
 } from '@material-ui';
 
 import { UserContext } from '/contexts/UserContext.jsx';
@@ -78,7 +79,27 @@ const MainUser = () => {
         <Typography variant="h5">${balance.toFixed(2)}</Typography>
       </Grid>
       <Grid item xs={12}>
-        <UserHistory history={history} removeHistory={removeHistory} />
+        <Box
+          component={Paper}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          px={[1, 4]}
+          py={2}
+        >
+          <Typography>Purchase History</Typography>
+          {history.map( ({name, quantity, unitPrice, totalPrice, date}, index) => (
+            <HistoryItem 
+              removeHistory={removeHistory}
+              name={name}
+              quantity={quantity}
+              unitPrice={unitPrice}
+              totalPrice={totalPrice}
+              date={date}
+              index={index}
+            />
+          ))}
+        </Box>
       </Grid>
     </Grid>
   )
