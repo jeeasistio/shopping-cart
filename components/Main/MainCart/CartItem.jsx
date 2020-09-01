@@ -13,19 +13,6 @@ import {
 const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice, onCartQuantities, setOnCartQuantities }) => {
 
   const useStyles = makeStyles(theme => ({
-    nameStyle: {
-      maxWidth: 180,
-      padding: 10,
-      [theme.breakpoints.up('sm')]: {
-        maxWidth: 'none'
-      }
-    },
-    nameBtn: {
-      maxWidth: '100%',
-      [theme.breakpoints.up('sm')]: {
-        maxWidth: 'none'
-      }
-    },
     quantityCtn: {
       display: 'flex',
       alignItems: 'center',
@@ -120,8 +107,8 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
 
   return (
     <React.Fragment>
-      <TableRow key={name}>
-        <TableCell className={classes.nameStyle}><Button className={classes.nameBtn} onClick={() => setDetailsIsOpen(!detailsIsOpen)}>{name}</Button></TableCell>
+      <TableRow>
+        <TableCell><Button onClick={() => setDetailsIsOpen(!detailsIsOpen)}>{name}</Button></TableCell>
         <TableCell align="center">
           <div className={classes.quantityCtn}>
             <Button 

@@ -34,6 +34,11 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
     setPurchaseIsOpen(false);
     clearCart();
   }
+  
+  const clearCartBtn = () => {
+    setClearIsOpen(false);
+    clearCart();
+  }
 
   return (
     <div className={classes.buttonsCtn}>
@@ -68,7 +73,7 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setClearIsOpen(false)}>No</Button>
-          <Button onClick={clearCart}>Yes</Button>
+          <Button onClick={clearCartBtn}>Yes</Button>
         </DialogActions>
       </Dialog>
     </div>
