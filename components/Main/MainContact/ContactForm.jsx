@@ -35,6 +35,7 @@ const ContactForm = () => {
             margin="normal"
             variant="outlined"
             size="small"
+            required
           />
           <TextField 
             type="email"
@@ -43,6 +44,7 @@ const ContactForm = () => {
             margin="normal"
             variant="outlined"
             size="small"
+            required
           />
           <TextField 
             multiline
@@ -52,6 +54,7 @@ const ContactForm = () => {
             rows={8}
             variant="outlined"
             size="small"
+            required
           />
           <Button
             className={classes.sendStyle}
