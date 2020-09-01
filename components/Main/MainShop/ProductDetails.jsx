@@ -119,7 +119,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
     <Dialog classes={{paper : classes.root}} open={detailsIsOpen} onClose={() => setDetailsIsOpen} fullScreen>
       <AppBar position="static" className={classes.navStyle}>
         <Toolbar className={classes.backCtn}>
-          <Typography>Your Balance: ${balance.toFixed(2)}</Typography>
+          <Typography>Your Balance: <Typography variant="h6" display="inline">${balance.toFixed(2)}</Typography></Typography>
           <IconButton className={classes.backBtn} onClick={() => setDetailsIsOpen(false)}><Icon>arrow_backward</Icon></IconButton>
         </Toolbar>
       </AppBar>

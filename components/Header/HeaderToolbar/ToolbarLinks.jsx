@@ -11,7 +11,6 @@ const ToolbarLinks = () => {
 
   const useStyles = makeStyles(theme => ({
     linkStyle: {
-      color: '#fff',
       margin: 'auto 5px'
     }
   }))

@@ -69,7 +69,7 @@ const ContactForm = () => {
           flexDirection="column"
         >
           <Typography paragraph variant="h6">Email Sent!</Typography>
-          <Typography>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, alias aperiam molestias itaque magnam tenetur</Typography>
+          <Typography>Thank you for reaching us out! We are now looking forward to your message.</Typography>
         </Box>
       }
     </React.Fragment>

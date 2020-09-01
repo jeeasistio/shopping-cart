@@ -19,9 +19,11 @@ const HeaderToolbar = ({ toggleDrawer }) => {
       alignItems: 'center'
     },
     menuStyle: {
-      color: '#fff',
       display: 'flex',
       justifyContent: 'center'
+    },
+    logoStyle: {
+      width: 100
     }
   }))
 
@@ -29,7 +31,7 @@ const HeaderToolbar = ({ toggleDrawer }) => {
 
   return (
     <Toolbar className={classes.navStyle} component="nav">
-      <Typography>Shopy</Typography>
+      <img className={classes.logoStyle} src="/assets/img/logo.png" />
       <Hidden mdUp>
         <IconButton className={classes.menuStyle} onClick={toggleDrawer}><Icon>menu</Icon></IconButton>
       </Hidden>

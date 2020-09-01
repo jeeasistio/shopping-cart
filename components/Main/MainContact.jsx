@@ -33,7 +33,7 @@ const MainContact = () => {
       <Grid className={classes.introStyle} item>
         <Typography variant="h5">Get in Touch</Typography>
         <Typography vraiant="body2">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, alias aperiam molestias itaque magnam tenetur, ducimus laborum! Aut, cum, vel.
+          We'd love to hear from you. Send us a question or message with the form below and we'll be in touch with you as soon as possible.
         </Typography>
       </Grid>
       <Grid 

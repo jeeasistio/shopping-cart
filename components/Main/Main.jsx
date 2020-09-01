@@ -9,8 +9,8 @@ import MainUser from './MainUser.jsx'
 const Main = () => {
   return (
     <main>
-      <Redirect from="/" to ="/home" />
-      <Route path="/home" exact component={MainHome} />
+      <Redirect from="/" to ="/" />
+      <Route path="/" exact component={MainHome} />
       <Route path="/shop" exact component={MainShop} />
       <Route path="/cart" exact component={MainCart} />
       <Route path="/contact" exact component={MainContact} />

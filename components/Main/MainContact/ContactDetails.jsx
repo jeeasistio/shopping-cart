@@ -44,8 +44,12 @@ const ContactDetails = () => {
       <Box
         textAlign="center"
       >
-        {['facebook', 'google', 'twitter', 'github'].map(brand => (
-          <IconButton>
+        {['facebook', 'codepen', 'twitter', 'github'].map(brand => (
+          <IconButton 
+            component="a"
+            href={`https://${brand}.com/jeeasistio`}
+            target="_blank"
+          >
             <Icon fontSize="1rem" className={`fab fa-${brand}`} />
           </IconButton>
         ))}

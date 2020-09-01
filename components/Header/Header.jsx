@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HeaderToolbar from './HeaderToolbar.jsx';
 import HeaderDrawer from './HeaderDrawer.jsx';
 import {
+  makeStyles,
   AppBar,
   useScrollTrigger,
   Slide,
@@ -9,6 +10,14 @@ import {
 } from '@material-ui';
 
 const Header = () => {
+  
+  const useStyles = makeStyles(theme => ({
+    root: {
+      background: "#fff"
+    }
+  }))
+  
+  const classes = useStyles();
 
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
@@ -28,7 +37,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <HideOnScroll>
-        <AppBar position="sticky" id="header">
+        <AppBar className={classes.root} position="sticky" id="header">
           <HeaderToolbar toggleDrawer={toggleDrawer} />
         </AppBar>
       </HideOnScroll>
