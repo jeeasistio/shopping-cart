@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
+  makeStyles,
   List,
   ListItem,
   ListItemIcon,
@@ -11,6 +12,14 @@ import {
 } from '@material-ui';
 
 const HeaderDrawer = ({ drawerIsOpen, setDrawerIsOpen }) => {
+  
+  const useStyles = makeStyles(theme => ({
+    activeLink: {
+      color: '#c0f'
+    }
+  }))
+  
+  const classes = useStyles();
 
   const links = [
     {
@@ -39,6 +48,8 @@ const HeaderDrawer = ({ drawerIsOpen, setDrawerIsOpen }) => {
       label: 'User'
     }
   ];
+  
+  const location = useLocation();
 
   return (
     <Drawer anchor="right" open={drawerIsOpen} onClick={() => setDrawerIsOpen(false)} onClose={() => setDrawerIsOpen(false)}>
@@ -49,9 +60,9 @@ const HeaderDrawer = ({ drawerIsOpen, setDrawerIsOpen }) => {
         {links.map( ({icon, link, label}) => (
           <ListItem button component={Link} to={link} exact>
             <ListItemIcon>
-              <Icon>{icon}}</Icon>
+              <Icon className={location.pathname === link && classes.activeLink}>{icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={label} />
+            <ListItemText className={location.pathname === link && classes.activeLink} primary={label} />
           </ListItem>
         ))}
       </List>

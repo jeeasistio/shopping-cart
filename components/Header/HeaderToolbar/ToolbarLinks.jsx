@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   makeStyles,
   Box,
@@ -11,7 +11,12 @@ const ToolbarLinks = () => {
 
   const useStyles = makeStyles(theme => ({
     linkStyle: {
-      margin: 'auto 5px'
+      margin: 'auto 5px',
+      color: '#616161'
+    },
+    activeLink: {
+      margin: 'auto 5px',
+      color: '#c0f'
     }
   }))
 
@@ -44,12 +49,14 @@ const ToolbarLinks = () => {
       label: 'User'
     }
   ];
+  
+  const location = useLocation();
 
   return (
     <Box>
       {links.map( ({icon, link, label}) => (
         <Button
-          className={classes.linkStyle}
+          className={location.pathname === link ? classes.activeLink : classes.linkStyle}
           component={Link}
           to={link}
           startIcon={<Icon>{icon}</Icon>}

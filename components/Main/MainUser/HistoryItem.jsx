@@ -16,6 +16,9 @@ const HistoryItem = ({ removeHistory, name, quantity, unitPrice, totalPrice, dat
     collapseStyle: {
       background: '#f4f4f4',
       width: '100%'
+    },
+    removeStyle: {
+      color: '#f55'
     }
   }))
   
@@ -33,7 +36,7 @@ const HistoryItem = ({ removeHistory, name, quantity, unitPrice, totalPrice, dat
       >
         <Box width={"80%"} display="flex" alignItems="center" py={1}>
           <IconButton size="small" onClick={() => removeHistory(index)}>
-            <Icon>close</Icon>
+            <Icon className={classes.removeStyle}>close</Icon>
           </IconButton>
           <Button size="small" onClick={() => setDetailsIsOpen(!detailsIsOpen)}>
             <Typography variant="subtitle2" noWrap>{name}</Typography>

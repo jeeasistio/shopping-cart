@@ -11,7 +11,7 @@ import { ProductsContext } from '/contexts/ProductsContext.jsx';
 
 const MainHome = () => {
   
-  const { searchProducts, setInputText } = useContext(ProductsContext);
+  const { setSearchQuery, setInputText } = useContext(ProductsContext);
 
   const useStyles = makeStyles(theme => ({
     thingsCtn: {
@@ -51,7 +51,7 @@ const MainHome = () => {
               <HomeThings 
                 thing={thing} 
                 setSearchQuery={setSearchQuery} 
-                searchProducts={searchProducts}
+                setInputText={setInputText}
               />
             ))}
           </Grid>
