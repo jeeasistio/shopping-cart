@@ -17,7 +17,10 @@ const MainHome = () => {
     thingsCtn: {
       margin: 0,
       maxWidth: '100%'
-    }
+    },
+     introImgStyle: {
+       maxWidth: '100%'
+     }
   }))
 
   const classes = useStyles();
@@ -34,6 +37,9 @@ const MainHome = () => {
           justifyContent="center"
           height={'90vh'}
         >
+          <Box width="20%">
+            <img className={classes.introImgStyle} src="/assets/img/introImg.jpg" />
+          </Box>
           <Typography variant="h4">Welcome to Shopy!</Typography>
           <Typography>Like Products. Like Never Before.</Typography>
         </Box>
