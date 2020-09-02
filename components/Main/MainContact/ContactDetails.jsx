@@ -11,7 +11,7 @@ const ContactDetails = () => {
   const details = [
     {
       icon: 'location_on',
-      info: '312 P. Zamora St. Caloocan City, Philippines'
+      info: '312 P. Zamora St. Caloocan City, Philippines',
     },
     {
       icon: 'call',
@@ -36,7 +36,7 @@ const ContactDetails = () => {
           my={4}
           textAlign={['center', 'right']}
         >
-          <Icon>{icon}</Icon>
+          <Icon color="primary">{icon}</Icon>
           <Typography>{info}</Typography>
         </Box>
       ))}

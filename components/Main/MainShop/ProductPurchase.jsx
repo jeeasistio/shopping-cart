@@ -5,7 +5,8 @@ import {
   Icon,
   Dialog,
   DialogContent,
-  DialogActions
+  DialogActions,
+  Typography
 } from '@material-ui';
 
 const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
@@ -18,6 +19,23 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
       '& > *': {
         margin: '5px auto'
       }
+    },
+    shoppingCartBtn: {
+      background: `linear-gradient(${!isOnCart ? '#f93, #f93' : '#f55, #f55'})`,
+      color: '#fff'
+    },
+    purchaseBtn: {
+      background: 'linear-gradient(#3c3, #3c3)',
+      color: '#fff'
+    },
+    purchaseContent: {
+      color: '#36f'
+    },
+    noBtn: {
+      color: '#f55'
+    },
+    yesBtn: {
+      color: '#36f'
     }
   }))
 
@@ -33,6 +51,7 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
   return (
     <div className={classes.buttonsCtn}>
       <Button 
+        className={classes.shoppingCartBtn}
         onClick={cartBtn}
         fullWidth variant="contained"
         startIcon={<Icon>{isOnCart ? 'remove_shopping_cart' : 'add_shopping_cart'}</Icon>}
@@ -50,10 +69,10 @@ const ProductPurchase = ({ item, isOnCart, cartBtn, purchaseItem }) => {
       </Button>
       <Dialog open={dialogIsOpen} onClose={() => setDialogIsOpen(false)}>
         <DialogContent>
-          Are you sure you want to purchase this item?
+          Are you sure you want to <Typography variant="subtitle2" display="inline">purchase</Typography> this item?
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogIsOpen(false)}>No</Button>
+          <Button className={classes.noBtn} onClick={() => setDialogIsOpen(false)}>No</Button>
           <Button onClick={confirmPurchase}>Yes</Button>
         </DialogActions>
       </Dialog>

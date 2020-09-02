@@ -11,6 +11,18 @@ import {
 } from '@material-ui';
 
 const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPrice, onCartQuantities, setOnCartQuantities }) => {
+  
+  const [quantity, setQuantity] = useState(1);
+  
+  const {
+    brand,
+    name,
+    on_sale,
+    price,
+    quantity_available: available,
+    sale_price,
+    thumbnailImageUrl: thumbnail
+  } = item;
 
   const useStyles = makeStyles(theme => ({
     quantityCtn: {
@@ -22,12 +34,23 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
         flexDirection: 'row'
       }
     },
-    quantityBtn: {
+    reduceQuantityBtn: {
       minWidth: 20,
       maxWidth: 20,
       minHeight: 20,
       maxHeight: 20,
-      margin: 5
+      margin: 5,
+      background: `linear-gradient(${quantity < 2 ? '#f55, #f55' : '#f93, #f93'})`,
+      color: '#fff'
+    },
+    addQuantityBtn: {
+      minWidth: 20,
+      maxWidth: 20,
+      minHeight: 20,
+      maxHeight: 20,
+      margin: 5,
+      background: `linear-gradient(${quantity < available ? '#3c3, #3c3' : null})`,
+      color: '#fff'
     },
     quantityIcon: {
       fontSize: '0.8rem'
@@ -51,18 +74,7 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
   }))
 
   const classes = useStyles();
-
-  const {
-    brand,
-    name,
-    on_sale,
-    price,
-    quantity_available: available,
-    sale_price,
-    thumbnailImageUrl: thumbnail
-  } = item;
-
-  const [quantity, setQuantity] = useState(1);
+  
   const [isSale, setIsSale] = useState(false);
   const [detailsIsOpen, setDetailsIsOpen] = useState(false);
 
@@ -112,7 +124,7 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
         <TableCell align="center">
           <div className={classes.quantityCtn}>
             <Button 
-              className={classes.quantityBtn}
+              className={classes.reduceQuantityBtn}
               variant="contained"
               size="small"
               onClick={quantity < 2 ? removeItem : reduceQuantity}
@@ -121,7 +133,7 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
             </Button>
               {quantity}
             <Button
-              className={classes.quantityBtn}
+              className={classes.addQuantityBtn}
               disabled={quantity >= available}
               variant="contained"
               size="small"
@@ -132,7 +144,7 @@ const CartItems = ({ cart, item, removeFromCart, totalCartPrice, setTotalCartPri
           </div>
         </TableCell>
         <TableCell align="center">${unitPrice.toFixed(2)}</TableCell> 
-        <TableCell align="center">${sum.toFixed(2)}</TableCell>
+        <TableCell align="center"><Typography variant="subtitle2">${sum.toFixed(2)}</Typography></TableCell>
       </TableRow>
       <TableRow>
         <TableCell className={classes.collapseCtn} colSpan={4}>

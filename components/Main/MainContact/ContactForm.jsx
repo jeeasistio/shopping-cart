@@ -11,6 +11,8 @@ const ContactForm = () => {
 
   const useStyles = makeStyles(theme => ({
     sendStyle: {
+      background: 'linear-gradient(#c0f, #c0f)',
+      color: '#fff',
       marginTop: 5
     }
   }))

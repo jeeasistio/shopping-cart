@@ -17,6 +17,17 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
       '& > *': {
         margin: '5px auto'
       }
+    },
+    clearBtnStyle: {
+      background: 'linear-gradient(#f55, #f55)',
+      color: '#fff'
+    },
+    purchaseBtnStyle: {
+      background: 'linear-gradient(#3c3, #3c3)',
+      color: '#fff'
+    },
+    noBtn: {
+      color: '#f55'
     }
   }))
 
@@ -43,6 +54,7 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
   return (
     <div className={classes.buttonsCtn}>
       <Button 
+        className={classes.clearBtnStyle}
         fullWidth 
         variant="contained"
         startIcon={<Icon>close</Icon>}
@@ -51,6 +63,7 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
         Clear Cart
       </Button>
       <Button 
+        className={classes.purchaseBtnStyle}
         onClick={() => setPurchaseIsOpen(true)}
         fullWidth 
         variant="contained"
@@ -60,16 +73,16 @@ const CartPurchase = ({ cart, clearCart, purchaseItem, onCartQuantities, setOnCa
       </Button>
       <Dialog open={purchaseIsOpen} onClose={() => setPurchaseIsOpen(false)}>
         <DialogContent>
-          Are you sure you want to <Typography display="inline">purchase</Typography> all items on the cart?
+          Are you sure you want to <Typography variant="subtitle2" display="inline">purchase</Typography> all items on the cart?
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setPurchaseIsOpen(false)}>No</Button>
+          <Button className={classes.noBtn} onClick={() => setPurchaseIsOpen(false)}>No</Button>
           <Button onClick={purchaseOnCart}>Yes</Button>
         </DialogActions>
       </Dialog>
       <Dialog open={clearIsOpen} onClose={() => setClearIsOpen(false)}>
         <DialogContent>
-          Are you sure you want to <Typography display="inline">clear</Typography> all Items on the cart?
+          Are you sure you want to <Typography variant="subtitle2" display="inline">clear</Typography> all Items on the cart?
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setClearIsOpen(false)}>No</Button>

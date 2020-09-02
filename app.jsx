@@ -5,6 +5,7 @@ import Header from '/components/Header/Header.jsx';
 import Main from '/components/Main/Main.jsx';
 import Footer from '/components/Footer/Footer.jsx';
 import { CssBaseline } from '@material-ui';
+import AppTheme from '/contexts/AppTheme.jsx';
 
 import { ProductsProvider } from '/contexts/ProductsContext.jsx';
 import { CartProvider } from '/contexts/CartContext.jsx';
@@ -19,9 +20,11 @@ const App = () => {
             <ProductsProvider>
               <CartProvider>
                 <UserProvider>
-                  <Header />
-                  <Main />
-                  <Footer />
+                  <AppTheme>
+                    <Header />
+                    <Main />
+                    <Footer />
+                  </AppTheme>
                 </UserProvider>
               </CartProvider>
             </ProductsProvider>

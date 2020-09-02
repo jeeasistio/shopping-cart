@@ -50,7 +50,8 @@ const ProductItem = memo(({ item }) => {
       fontSize: '0.8rem'
     },
     cartBtnStyle: {
-      fontSize: '1.3rem'
+      fontSize: '1.3rem',
+      color: !isOnCart ? '#f93' : '#f55'
     }
   }))
 

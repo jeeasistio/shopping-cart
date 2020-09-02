@@ -32,6 +32,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
       }
     },
     navStyle: {
+      background: '#fff',
       margin: 0
     },
     backCtn: {
@@ -41,7 +42,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
       margin: 0
     },
     backBtn: {
-      color: '#fff',
+      color: '#000',
       display: 'flex',
       justifyContent: 'center'
     },
@@ -58,7 +59,7 @@ const ProductDetails = ({ item, detailsIsOpen, setDetailsIsOpen, cartBtn, isOnCa
         width: '40%',
         height: 400,
         border: 'none',
-        background: '#fff',
+        background: 'none',
         marginTop: 10
       }
     },

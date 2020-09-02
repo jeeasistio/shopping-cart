@@ -59,6 +59,10 @@ const MainShop = () => {
       [theme.breakpoints.up('sm')]: {
         width: '50%'
       }
+    },
+    searchBtn: {
+      background: 'linear-gradient(#c0f, #c0f)',
+      color: '#fff'
     }
   }))
 
@@ -85,7 +89,7 @@ const MainShop = () => {
           label="Search Items..."
           value={inputText}
         />
-        <Button type="submit" variant="contained">Search</Button>
+        <Button className={classes.searchBtn} type="submit" variant="contained">Search</Button>
       </form>
       <div className={classes.sortCtn}>
         <Typography variant="subtitle2">Sort by:</Typography>
