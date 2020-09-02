@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles, Typography, Grid, Button, Paper } from '@material-ui';
 
-const HomeThings = ({ thing, setInputText, searchProducts, setSearchQuery }) => {
+const HomeThings = ({ thing, setInputText, setSearchQuery }) => {
 
   const useStyles = makeStyles(theme => ({
     thingImg: {
@@ -20,7 +20,6 @@ const HomeThings = ({ thing, setInputText, searchProducts, setSearchQuery }) => 
   const searchThing = () => {
     setInputText(thing)
     setSearchQuery(thing);
-    searchProducts();
   }
 
   const classes = useStyles();

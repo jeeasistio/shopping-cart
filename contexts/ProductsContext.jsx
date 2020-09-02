@@ -5,7 +5,7 @@ const ProductsContext = createContext();
 const ProductsProvider = ({ children }) => {
 
   const [inputText, setInputText] = useState('');
-  const [searchQuery, setSearchQuery] = useState(inputText);
+  const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [currPage, setCurrPage] = useState(1);
