@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Header from '/components/Header/Header.jsx';
 import Main from '/components/Main/Main.jsx';
 import Footer from '/components/Footer/Footer.jsx';
-import { CssBaseline } from '@material-ui';
+import { CssBaseline, makeStyles } from '@material-ui';
 import AppTheme from '/contexts/AppTheme.jsx';
 
 import { ProductsProvider } from '/contexts/ProductsContext.jsx';
@@ -12,8 +12,17 @@ import { CartProvider } from '/contexts/CartContext.jsx';
 import { UserProvider } from '/contexts/UserContext.jsx';
 
 const App = () => {
+  
+  const useStyles = makeStyles(theme => ({
+    app: {
+      position: 'relative'
+    }
+  }))
+  
+  const classes = useStyles();
+  
   return (
-    <div className="App">
+    <div className={classes.app}>
       <Router>  
         <Switch>
           <CssBaseline>
