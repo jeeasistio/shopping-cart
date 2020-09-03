@@ -28,10 +28,8 @@ const MainCart = () => {
       textAlign: 'center'
     },
     tableStyle: {
-      margin: '10px auto',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
+      overflowX: 'auto',
+      margin: '10px auto'
     },
     toolbarStyle: {
       padding: 0,
