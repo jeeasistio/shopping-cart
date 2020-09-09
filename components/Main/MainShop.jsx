@@ -27,6 +27,7 @@ const MainShop = () => {
     direction,
     setDirection,
     currPage,
+    setCurrPage,
     inputText,
     setInputText
   } = useContext(ProductsContext);
@@ -71,6 +72,7 @@ const MainShop = () => {
   const changeQuery = (e) => {
     e.preventDefault();
     setSearchQuery(inputText);
+    setCurrPage(1)
   }
 
   useEffect(() => {

@@ -15,7 +15,8 @@ import {
   Button,
   IconButton,
   Icon,
-  Zoom
+  Zoom,
+  Chip
 } from '@material-ui';
 
 const ProductItem = memo(({ item }) => {
@@ -28,6 +29,14 @@ const ProductItem = memo(({ item }) => {
     cardMediaStyle: {
       width: '100%',
       height: 150
+    },
+    actionAreaStyle: {
+      position: 'relative'
+    },
+    saleStyle: {
+      position: 'absolute',
+      right: 5,
+      top: 5
     },
     cardContentStyle: {
       padding: '5px 10px'
@@ -84,8 +93,9 @@ const ProductItem = memo(({ item }) => {
     <Grid item xs={6} sm={4} md={3}>
       <Zoom in={true}>
         <Card>
-          <CardActionArea onClick={() => setImageIsOpen(true)}>
+          <CardActionArea className={classes.actionAreaStyle} onClick={() => setImageIsOpen(true)}>
             <CardMedia className={classes.cardMediaStyle} image={image} />
+            {on_sale === 'Yes' && <Chip className={classes.saleStyle} size="small" color="secondary" icon={<Icon>loyalty</Icon>} label="SALE" />}
           </CardActionArea>
           <CardContent className={classes.cardContentStyle}>
             <Typography noWrap>{he.decode(name)}</Typography>

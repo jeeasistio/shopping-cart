@@ -32,49 +32,90 @@ const Pages = () => {
 
   const classes = useStyles()
 
-  const items = [];
-  const pageNumber = totalPages >= 10 ? 10 : totalPages;
-
-  for (let number = 1; number <= pageNumber; number++) {
-    const active = currPage === number;
-    items.push(
-      <IconButton 
-        className={classes.pageStyle} 
-        size="small"
-        onClick={() => setCurrPage(number)}
-      >
-        <Typography 
-          variant={active ? "h6" : "body1"}
-          color={active ? "primary" : "textSecondary"}
-        >
-          {number}
-        </Typography>
-      </IconButton>
-    );
-  }
-
-  const prevPage = () => {
-    setCurrPage(currPage - 1);
-  }
-
-  const nextPage = () => {
-    setCurrPage(currPage + 1);
-  }
-
   return (
     <Pagination className={classes.root}>
       <IconButton 
-        disabled={currPage <= 1} 
-        onClick={prevPage} 
+        disabled={currPage === 1} 
+        onClick={() => setCurrPage(currPage - 1)}
         color="primary" 
         size="small"
       >
         <Icon className={classes.arrowIcon}>arrow_back_ios</Icon>
       </IconButton>
-      {items}
+      
+      {currPage > 2 &&
+          <IconButton className={classes.pageStyle} onClick={() => setCurrPage(1)} size="small">
+            <Typography variant="body1" color="textSecondary">
+              1
+            </Typography>
+          </IconButton>
+      }
+      
+      {currPage > 4 &&
+        <IconButton className={classes.pageStyle} size="small" disabled>
+          <Typography variant="body1" color="textSecondary">
+            ...
+          </Typography>
+        </IconButton>
+      }
+      
+      {currPage > 3 && 
+          <IconButton className={classes.pageStyle} onClick={() => setCurrPage(currPage - 2)} size="small">
+            <Typography variant="body1" color="textSecondary">
+              {currPage - 2}
+            </Typography>
+          </IconButton>
+      }
+      
+      {currPage > 1 && 
+        <IconButton className={classes.pageStyle} onClick={() => setCurrPage(currPage - 1)} size="small">
+          <Typography variant="body1" color="textSecondary">
+            {currPage - 1}
+          </Typography>
+        </IconButton>
+      }
+      
+      <IconButton className={classes.pageStyle} size="small">
+        <Typography variant="h6" color="primary">
+          {currPage}
+        </Typography>
+      </IconButton>
+      
+      {currPage < (totalPages - 1) &&
+          <IconButton className={classes.pageStyle} onClick={() => setCurrPage(currPage + 1)} size="small">
+            <Typography variant="body1" color="textSecondary">
+              {currPage + 1}
+            </Typography>
+          </IconButton>
+      }
+      
+      {currPage < (totalPages - 2) && 
+        <IconButton className={classes.pageStyle} onClick={() => setCurrPage(currPage + 2)} size="small">
+          <Typography variant="body1" color="textSecondary">
+            {currPage + 2}
+          </Typography>
+        </IconButton>
+      }
+      
+      {currPage < (totalPages - 3) && 
+        <IconButton className={classes.pageStyle} size="small" disabled>
+          <Typography variant="body1" color="textSecondary">
+            ...
+          </Typography>
+        </IconButton>
+      } 
+      
+      {currPage < totalPages && 
+        <IconButton className={classes.pageStyle} onClick={() => setCurrPage(totalPages)} size="small">
+          <Typography variant="body1" color="textSecondary">
+            {totalPages}
+          </Typography>
+        </IconButton>
+      }
+      
       <IconButton
-        disabled={currPage >= pageNumber || pageNumber <= 1}
-        onClick={nextPage}
+        disabled={currPage === totalPages}
+        onClick={() => setCurrPage(currPage + 1)}
         color="primary"
         size="small"
       >

@@ -20,7 +20,8 @@ const HeaderToolbar = ({ toggleDrawer }) => {
     },
     menuStyle: {
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      color: '#000'
     },
     logoStyle: {
       width: 100
